@@ -1,0 +1,58 @@
+<!-- Accepted -->
+<div class="card">
+    <div class="card-body">
+        <!-- title -->
+        <h4 class="card-title">Approved Organisations</h4>
+        <h5 class="card-subtitle">Organisation details</h5>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    (ngModelChange)="filterData()" autocomplete="off" placeholder="Find users">
+            </div>
+            <!-- <div class="col-1">
+                <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
+            </div> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th (click)="sortColumn('clinicid')" class="text-dark font-medium fs-4">Organization ID
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('clinicName')" class="text-dark font-medium fs-4">Organization
+                            Name
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('email')" class="text-dark font-medium fs-4">Organization
+                            Email
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('address')" class="text-dark font-medium fs-4">Organization
+                            address
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let ts of filteredData'>
+                        <ng-container *ngIf="ts.statuscode == 'AC2000'">
+                            <td class="fs-4">
+                                {{ts.clinicid}}
+                            </td>
+                            <td>
+                                {{ts.clinicDetails.clinicName}}
+                            </td>
+                            <td>
+                                {{ts.clinicDetails.email}}
+                            </td>
+                            <td>
+                                {{ts.clinicDetails.address}}
+                            </td>
+                            <td>
+                                {{ts.clinicDetails.phonenumber}}
+                            </td>
+                        </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

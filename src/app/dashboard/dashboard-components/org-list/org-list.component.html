@@ -1,0 +1,175 @@
+<!-- for Approval -->
+<div class="card">
+    <div class="card-body">
+        <!-- title -->
+        <h4 class="card-title">Approval Waiting list</h4>
+        <h5 class="card-subtitle">Profile for review</h5>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your orders">
+            </div>
+            <!-- <div class="col-1">
+                <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
+            </div> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th (click)="sortColumn('organizationid')" class="text-dark font-medium fs-4">Organization ID
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationname')" class="text-dark font-medium fs-4">Organization
+                            Name
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationemail')" class="text-dark font-medium fs-4">Organization
+                            Email
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationaddress')" class="text-dark font-medium fs-4">Organization
+                            address
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let ts of filteredData'>
+                        <ng-container *ngIf="ts.orgapproval == 'Waiting'">
+                            <td class="fs-4">
+                                {{ts.organizationid}}
+                            </td>
+                            <td>
+                                {{ts.organizationname}}
+                            </td>
+                            <td>
+                                {{ts.organizationemail}}
+                            </td>
+                            <td>
+                                {{ts.organizationaddress}}
+                            </td>
+                            <td>
+                                {{ts.phonenumber}}
+                            </td>
+
+                        </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Accepted -->
+<div class="card">
+    <div class="card-body">
+        <!-- title -->
+        <h4 class="card-title">Approved Organisations</h4>
+        <h5 class="card-subtitle">Organisations </h5>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your orders">
+            </div>
+            <!-- <div class="col-1">
+                <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
+            </div> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th (click)="sortColumn('organizationid')" class="text-dark font-medium fs-4">Organization ID
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationname')" class="text-dark font-medium fs-4">Organization
+                            Name
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationemail')" class="text-dark font-medium fs-4">Organization
+                            Email
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationaddress')" class="text-dark font-medium fs-4">Organization
+                            address
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let ts of filteredData'>
+                        <ng-container *ngIf="ts.orgapproval == 'Accepted'">
+                            <td class="fs-4">
+                                {{ts.organizationid}}
+                            </td>
+                            <td>
+                                {{ts.organizationname}}
+                            </td>
+                            <td>
+                                {{ts.organizationemail}}
+                            </td>
+                            <td>
+                                {{ts.organizationaddress}}
+                            </td>
+                            <td>
+                                {{ts.phonenumber}}
+                            </td>
+                        </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Rejected -->
+<div class="card">
+    <div class="card-body">
+        <!-- title -->
+        <h4 class="card-title">Rejected Organisations</h4>
+        <h5 class="card-subtitle">Rejected</h5>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your orders">
+            </div>
+            <!-- <div class="col-1">
+                <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
+            </div> -->
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th (click)="sortColumn('organizationid')" class="text-dark font-medium fs-4">Organization ID
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationname')" class="text-dark font-medium fs-4">Organization
+                            Name
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationemail')" class="text-dark font-medium fs-4">Organization
+                            Email
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('organizationaddress')" class="text-dark font-medium fs-4">Organization
+                            address
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
+                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let ts of filteredData'>
+                        <ng-container *ngIf="ts.orgapproval == 'Rejected'">
+                            <td class="fs-4">
+                                {{ts.organizationid}}
+                            </td>
+                            <td>
+                                {{ts.organizationname}}
+                            </td>
+                            <td>
+                                {{ts.organizationemail}}
+                            </td>
+                            <td>
+                                {{ts.organizationaddress}}
+                            </td>
+                            <td>
+                                {{ts.phonenumber}}
+                            </td>
+                        </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
