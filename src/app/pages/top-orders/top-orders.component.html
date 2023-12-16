@@ -2,35 +2,40 @@
 
 
     <div class="card-body">
-     
-      
-            <!-- title -->
-            <h4 class="card-title">Top Orders</h4>
-          
-     
+
+
+        <!-- title -->
+        <h4 class="card-title">Top Orders</h4>
+
+
         <h5 class="card-subtitle">Overview of the projects</h5>
-   
+
         <div class="row">
             <div class="col-11">
-              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" (ngModelChange)="filterData()"
-                  autocomplete="off" placeholder="Find your orders">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                    (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your orders">
             </div>
             <div class="col-1">
-              <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
+                <button class="btn btn-primary btn-sm" (click)="exportToCSV()"><i class="bi bi-download"></i></button>
             </div>
-          </div>
-      
+        </div>
+
 
         <!-- title -->
         <div class="table-responsive">
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th (click)="sortColumn('workOrder')" class="text-dark font-medium fs-4">Work Order &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('woStatus')" class="text-dark font-medium fs-4">Status &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('doctor')" class="text-dark font-medium fs-4">Patient &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('date')" class="text-dark font-medium fs-4">Required &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('product')" class="text-dark font-medium fs-4">Product &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('workOrder')" class="text-dark font-medium fs-4">Work Order &nbsp; <i
+                                class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('woStatus')" class="text-dark font-medium fs-4">Status &nbsp; <i
+                                class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('doctor')" class="text-dark font-medium fs-4">Patient &nbsp; <i
+                                class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('date')" class="text-dark font-medium fs-4">Required &nbsp; <i
+                                class="bi bi-arrow-down-up"></i></th>
+                        <th (click)="sortColumn('product')" class="text-dark font-medium fs-4">Product &nbsp; <i
+                                class="bi bi-arrow-down-up"></i></th>
                         <th class="text-dark font-medium fs-4">Files</th>
                         <th class="text-dark font-medium fs-4">Actions</th>
                     </tr>
@@ -39,6 +44,7 @@
                     <tr *ngFor='let ts of filteredData'>
                         <td class="fs-4">
                             {{ts.workOrder}}
+
                         </td>
                         <td>
                             <!-- <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span> -->
@@ -96,7 +102,7 @@
         </div>
 
 
-        
+
     </div>
 
 </div>

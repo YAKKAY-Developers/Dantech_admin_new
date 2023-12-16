@@ -43,7 +43,8 @@
                 <tbody>
                     <tr *ngFor='let ts of filteredData'>
                         <td class="fs-4">
-                            {{ts.orderid}}
+                            <!-- {{ts.orderid}} -->
+                            ...{{ ts.orderid.slice(-3) }}
                         </td>
                         <td>
                             <!-- <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span> -->
@@ -77,8 +78,8 @@
                             <button *ngIf="ts.woStatus === 'In Production'" class="btn btn-warning disabled btn-sm"><i
                                     class="bi bi-person-plus"></i></button>
                             &nbsp;
-                            <button class="btn btn-success btn-sm" value="{{ts.workOrder}}" name="workOrder"
-                                (click)="start($event)"><i class="bi bi-play"></i></button>
+                            <!-- <button class="btn btn-success btn-sm" value="{{ts.workOrder}}" name="workOrder"
+                                (click)="start($event)"><i class="bi bi-play"></i></button> -->
 
                             <button class="btn btn-secondary disabled btn-sm"><i class="bi bi-pause"></i></button>
 
