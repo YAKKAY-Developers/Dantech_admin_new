@@ -156,6 +156,8 @@
                         <div *ngIf=" submitted && r['description'].errors" class="invalid-feedback">
                             <div *ngIf="r['description'].errors && r['description'].errors['required']">
                                 Description is required</div>
+                            <div *ngIf="r['description'].errors && r['description'].errors['minlength']">
+                                Should contain atleast 10 charectors</div>
                         </div>
 
                     </div>

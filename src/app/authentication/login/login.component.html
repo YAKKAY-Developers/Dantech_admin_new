@@ -17,6 +17,7 @@
                     [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" placeholder="Email" />
                 <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                     <div *ngIf="f['email'].errors && f['email'].errors['required']">Username is required</div>
+                    <div *ngIf="f['email'].errors && f['email'].errors['emaill']">Enter valid email</div>
                 </div>
 
 

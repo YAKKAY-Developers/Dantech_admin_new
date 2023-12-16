@@ -117,4 +117,11 @@ export class AuthService {
     console.log(body);
     return this.http.put(`${environment.apiUrl}/api/admin/rejectuser`, body);
   }
+
+  getallorders(userToken: any) {
+    const body = {
+      userToken: userToken,
+    };
+    return this.http.post(`${environment.apiUrl}/api/admin/getallorder`, body);
+  }
 }

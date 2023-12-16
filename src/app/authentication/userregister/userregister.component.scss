@@ -75,7 +75,8 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 50px;
+  padding: 0;
+  margin: 0 45px;
   height: 100%;
   text-align: center;
 }
@@ -145,6 +146,16 @@ input {
     opacity: 1;
     z-index: 5;
   }
+}
+
+.overflow-auto {
+  width: 95%;
+  padding: 1%;
+
+}
+
+.overflow-auto input {
+  margin-top: 0.9em;
 }
 
 .overlay-container {

@@ -60,6 +60,14 @@ export const ROUTES: RouteInfo[] = [
     ],
     expanded: false,
   },
+  {
+    path: '/det/pages/orders',
+    title: 'Orders',
+    icon: 'bi bi-box-seam',
+    class: '',
+    extralink: false,
+    submenu: [],
+  },
 
   // {
   //   path: '/pages/toporders',

@@ -9,6 +9,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { TestComponent } from './test/test.component';
 import { TaskComponent } from './task/task.component';
 import { AddclientComponent } from './addclient/addclient.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'toporders',
         component: TopOrdersComponent,
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
       },
       {
         path: 'orderdetail/:id',
@@ -46,6 +51,7 @@ const routes: Routes = [
     TestComponent,
     TaskComponent,
     AddclientComponent,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,
