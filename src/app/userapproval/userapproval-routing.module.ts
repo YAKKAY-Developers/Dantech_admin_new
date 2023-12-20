@@ -7,6 +7,7 @@ import { ApprovedusersComponent } from './approvedusers/approvedusers.component'
 import { PendingusersComponent } from './pendingusers/pendingusers.component';
 import { RejectedusersComponent } from './rejectedusers/rejectedusers.component';
 import { ChecklistComponent } from './checklist/checklist.component';
+import { authGuard } from '../helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,18 +16,22 @@ const routes: Routes = [
       {
         path: 'approvedusers',
         component: ApprovedusersComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'pendingusers',
         component: PendingusersComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'rejectedusers',
         component: RejectedusersComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'checklist/:id',
         component: ChecklistComponent,
+        canActivate: [authGuard],
       },
     ],
   },

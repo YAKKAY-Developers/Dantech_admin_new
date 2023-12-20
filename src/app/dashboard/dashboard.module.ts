@@ -11,6 +11,7 @@ import { TopCardsComponent } from './dashboard-components/top-cards/top-cards.co
 import { BlogCardsComponent } from './dashboard-components/blog-cards/blog-cards.component';
 import { TopOrdersComponent } from './dashboard-components/top-orders/top-orders.component';
 import { OrgListComponent } from './dashboard-components/org-list/org-list.component';
+import { authGuard } from '../helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       urls: [{ title: 'Dashboard', url: '/dashboard' }, { title: 'Dashboard' }],
     },
     component: DashboardComponent,
+    canActivate: [authGuard],
   },
 ];
 

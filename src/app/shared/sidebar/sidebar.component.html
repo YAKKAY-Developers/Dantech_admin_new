@@ -1,4 +1,14 @@
 <nav class="sidebar-nav">
+    <style>
+.d-flex.justify-content-end i {
+  display: flex;
+  transition: all 0.4s ease;
+}
+
+.d-flex.justify-content-end i:hover {
+  transform: rotateZ(90deg);
+}
+    </style>
     <ul id="sidebarnav">
         <!-- First level menu -->
         <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
@@ -21,7 +31,10 @@
                 <a class="sidebar-link waves-effect waves-dark" (click)="toggleSubMenu(sidebarnavItem)">
                     <i [ngClass]="[sidebarnavItem.icon]"></i>
                     <span class="hide-menu">{{sidebarnavItem.title}}</span>
+                    <div class="d-flex justify-content-end" style="width: 70%;"><i class="bi bi-chevron-right"></i></div>
+                    
                 </a>
+                
                 <ul *ngIf="sidebarnavItem.expanded">
                     <li *ngFor="let submenuItem of sidebarnavItem.submenu">
                         <a class="sidebar-link waves-effect waves-dark" [routerLink]="[submenuItem.path]"

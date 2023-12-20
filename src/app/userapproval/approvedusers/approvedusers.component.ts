@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { userapprovaldata, approvallist } from '../userapproval-data';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 function joinDictionaries(clinics, statuses) {
   // Create a map to store clinics based on clinic ID
@@ -15,6 +16,18 @@ function joinDictionaries(clinics, statuses) {
   });
 
   return joinedData;
+}
+
+function check_table_status(object: any){
+  for (let obj in object){
+    // console.log("object",object[0]["statuscode"])
+    if(object[obj]) {
+      if (object[obj]["statuscode"] === "AC2000"){
+      return true;
+    }
+  }
+}
+return false;
 }
 
 @Component({
@@ -34,12 +47,14 @@ export class ApprovedusersComponent {
   user_details: any;
   user_status: any;
   userdatasubscribtion: Subscription;
+  table_state = false;
 
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
     private route: ActivatedRoute,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private adminservice: AdminService
   ) {}
 
   //sortcolumn
@@ -101,7 +116,7 @@ export class ApprovedusersComponent {
   ngOnInit(): void {
     const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
     // console.log(adminToken)
-    this.userdatasubscribtion = this.authservice
+    this.userdatasubscribtion = this.adminservice
       .getallusers(adminToken)
       .subscribe(
         (res: any) => {
@@ -111,6 +126,8 @@ export class ApprovedusersComponent {
           this.user_status = this.user_details['state'];
           this.user_data = joinDictionaries(this.user_datas, this.user_status);
           this.filteredData = this.user_data;
+          this.table_state = check_table_status(this.user_data)
+          console.log(this.table_state);
           // console.log(this.user_datas, this.user_status);
           console.log(this.user_data);
           // console.log(this.filteredData)

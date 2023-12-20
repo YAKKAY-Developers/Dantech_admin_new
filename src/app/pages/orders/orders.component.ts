@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-orders',
@@ -23,7 +24,8 @@ export class OrdersComponent {
     public router: Router,
     private activatedRoute: ActivatedRoute,
     private route: ActivatedRoute,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private adminservice: AdminService
   ) {}
 
   sortColumn(column: string) {
@@ -84,7 +86,7 @@ export class OrdersComponent {
   ngOnInit(): void {
     const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
 
-    this.orderdatasubscribtion = this.authservice
+    this.orderdatasubscribtion = this.adminservice
       .getallorders(adminToken)
       .subscribe(
         (res: any) => {
@@ -95,6 +97,7 @@ export class OrdersComponent {
           }
           this.order_data = this.order_details.order;
           this.filteredData = this.order_data;
+          console.log(this.order_data);
         },
         (error: any) => {
           console.log(error);

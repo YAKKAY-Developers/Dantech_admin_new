@@ -10,6 +10,7 @@ import { TestComponent } from './test/test.component';
 import { TaskComponent } from './task/task.component';
 import { AddclientComponent } from './addclient/addclient.component';
 import { OrdersComponent } from './orders/orders.component';
+import { authGuard } from '../helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,10 +19,12 @@ const routes: Routes = [
       {
         path: 'toporders',
         component: TopOrdersComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'orderdetail/:id',
@@ -34,10 +37,12 @@ const routes: Routes = [
       {
         path: 'task/:id',
         component: TaskComponent,
+        canActivate: [authGuard],
       },
       {
         path: 'addclient',
         component: AddclientComponent,
+        canActivate: [authGuard],
       },
     ],
   },

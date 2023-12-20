@@ -33,6 +33,14 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+  loggedIn() {
+    return !!localStorage.getItem('user');
+  }
+  logout() {
+    localStorage.removeItem('user');
+    this.router.navigate(['/auth/login']);
+  }
+
   login(email: string, password: string) {
     return this.http
       .post<User>(`${environment.apiUrl}/api/user/login`, { email, password })
@@ -75,53 +83,5 @@ export class AuthService {
 
   adddoctor(doc: doctors) {
     return this.http.post(`${environment.apiUrl}/api/doctor/save`, doc);
-  }
-
-  getallusers(userToken: any) {
-    const body = {
-      userToken: userToken,
-    };
-    var URL = `${environment.apiUrl}/api/admin/getallusers`;
-    return this.http.post<any>(URL, body).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
-  }
-
-  getUserDetails(userToken: any) {
-    const body = {
-      userToken: userToken,
-    };
-    var URL = `${environment.apiUrl}/api/user/oneuser`;
-    return this.http.post<any>(URL, body).pipe(
-      map((res: any) => {
-        return res;
-      })
-    );
-  }
-
-  approveuser(userToken: any) {
-    const body = {
-      userToken: userToken,
-    };
-    console.log(body);
-    return this.http.put(`${environment.apiUrl}/api/admin/approveuser`, body);
-  }
-
-  rejectuser(userId: any, description: any) {
-    const body = {
-      userToken: userId,
-      description: description,
-    };
-    console.log(body);
-    return this.http.put(`${environment.apiUrl}/api/admin/rejectuser`, body);
-  }
-
-  getallorders(userToken: any) {
-    const body = {
-      userToken: userToken,
-    };
-    return this.http.post(`${environment.apiUrl}/api/admin/getallorder`, body);
   }
 }

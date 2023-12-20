@@ -10,6 +10,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { AdminService } from 'src/app/services/admin.service';
 import * as $ from 'jquery';
 import { OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
@@ -108,7 +109,8 @@ export class ChecklistComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private adminservice: AdminService
   ) {
     this.clinicdetails = clinicdat;
   }
@@ -119,7 +121,7 @@ export class ChecklistComponent implements OnInit {
       this.userId = this.userToken;
 
       //user details
-      this.userDetailsSubscription = this.authservice
+      this.userDetailsSubscription = this.adminservice
         .getUserDetails(this.userId)
         .subscribe(
           (res: any) => {
@@ -193,7 +195,7 @@ export class ChecklistComponent implements OnInit {
       return;
     }
 
-    this.authservice
+    this.adminservice
       .approveuser(this.userId)
       .pipe(first())
       .subscribe({
@@ -213,7 +215,7 @@ export class ChecklistComponent implements OnInit {
     if (this.reject_form.invalid) {
       return;
     }
-    this.authservice
+    this.adminservice
       .rejectuser(this.userId, this.reject_form.value)
       .pipe(first())
       .subscribe({

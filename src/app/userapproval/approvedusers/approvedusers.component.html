@@ -51,6 +51,10 @@
                                 {{ts.clinicDetails.phonenumber}}
                             </td>
                         </ng-container>
+                    </tr>
+                    <tr *ngIf="!table_state">
+                        <td class="text-center" colspan="5">No Approved Users ..!</td>
+                        </tr>
                 </tbody>
             </table>
         </div>
