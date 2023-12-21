@@ -8,6 +8,7 @@ import { PendingusersComponent } from './pendingusers/pendingusers.component';
 import { RejectedusersComponent } from './rejectedusers/rejectedusers.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { authGuard } from '../helpers/auth.guard';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
         component: ChecklistComponent,
         canActivate: [authGuard],
       },
+      {
+        path: 'userdetail/:id',
+        component: UserdetailsComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
 ];
@@ -49,6 +55,7 @@ const routes: Routes = [
     PendingusersComponent,
     RejectedusersComponent,
     ChecklistComponent,
+    UserdetailsComponent,
   ],
 })
 export class UserapprovalRoutingModule {}

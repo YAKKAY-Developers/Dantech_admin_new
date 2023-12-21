@@ -8,6 +8,7 @@ import { RejectedusersComponent } from './rejectedusers/rejectedusers.component'
 import { ChecklistComponent } from './checklist/checklist.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserdetailsComponent } from './userdetails/userdetails.component';
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [],

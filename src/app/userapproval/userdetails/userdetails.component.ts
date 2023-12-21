@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { clinicdat, clinicdata } from './checklist-data';
 import { Router, ActivatedRoute } from '@angular/router';
 import { userapprovaldata, approvallist } from '../userapproval-data';
 import { Subscription } from 'rxjs';
@@ -64,11 +63,11 @@ function convertNullValues(data: any) {
 }
 
 @Component({
-  selector: 'app-checklist',
-  templateUrl: './checklist.component.html',
-  styleUrls: ['./checklist.component.scss'],
+  selector: 'app-userdetails',
+  templateUrl: './userdetails.component.html',
+  styleUrls: ['./userdetails.component.scss'],
 })
-export class ChecklistComponent implements OnInit {
+export class UserdetailsComponent {
   form: FormGroup;
   reject_form: FormGroup;
   loading = false;
@@ -76,7 +75,6 @@ export class ChecklistComponent implements OnInit {
   submiiterdform: any;
   result: any;
 
-  clinicdetails: clinicdata[];
   clinicdatalist: any[] = [];
   searchText: string = '';
   filteredData: any[] = [];
@@ -111,9 +109,7 @@ export class ChecklistComponent implements OnInit {
     private route: ActivatedRoute,
     private authservice: AuthService,
     private adminservice: AdminService
-  ) {
-    this.clinicdetails = clinicdat;
-  }
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((paramsId) => {
@@ -162,7 +158,7 @@ export class ChecklistComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.max(1)]],
       email: ['', [Validators.required, Validators.max(1)]],
-      // image: ['', [Validators.required, Validators.max(1)]],
+      image: ['', [Validators.required, Validators.max(1)]],
       address: ['', [Validators.required, Validators.max(1)]],
       phonenumber: ['', [Validators.required, Validators.max(1)]],
     });
@@ -208,8 +204,6 @@ export class ChecklistComponent implements OnInit {
 
   Reject() {
     this.submitted = true;
-
-    console.log(this.form.value);
 
     if (this.reject_form.invalid) {
       return;

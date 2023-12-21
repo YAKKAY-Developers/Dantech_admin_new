@@ -21,6 +21,20 @@
                             <tr>
                                 <td>1</td>
                                 <td>
+                                    <h4 class="card-title">Clinic Name</h4>
+                                </td>
+                                <td>
+                                    <h5 class="card-subtitle text-muted mt-1">{{ts.clinicName}}</h5>
+                                </td>
+                                <td>
+                                    <input formControlName="name" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submiiterdform && f['name'].errors }" type="checkbox"
+                                        value="0">
+                                </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>2</td>
+                                <td>
                                     <h4 class="card-title">Image</h4>
                                 </td>
                                 <td><img src="{{ts.image}}" alt="" style="height:60px ;"></td>
@@ -28,7 +42,7 @@
                                     <input type="checkbox" formControlName="image" class="form-control"
                                         [ngClass]="{ 'is-invalid': submiiterdform && f['image'].errors }" value="">
                                 </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                                 <td>2</td>
                                 <td>
@@ -50,8 +64,8 @@
                                 </td>
                                 <td>
                                     <h5 class="card-subtitle text-muted mt-1">{{ts.address}}</h5>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.city}}</h5>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.state}}</h5>
+                                    <!-- <h5 class="card-subtitle text-muted mt-1">{{ts.city}}</h5>
+                                    <h5 class="card-subtitle text-muted mt-1">{{ts.state}}</h5> -->
                                 </td>
                                 <td>
                                     <input type="checkbox" formControlName="address" class="form-control"
@@ -72,7 +86,7 @@
                                         value="">
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>5</td>
                                 <td>
                                     <h4 class="card-title">Bank account number</h4>
@@ -124,7 +138,7 @@
                                     <input type="checkbox" formControlName="gst" class="form-control"
                                         [ngClass]="{ 'is-invalid': submiiterdform && f['gst'].errors }" value="">
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>

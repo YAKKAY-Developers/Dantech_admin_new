@@ -1,0 +1,110 @@
+<p>userdetails works!</p>
+<section class="container">
+    <div class="card">
+        <div class="card-body">
+            <!-- title -->
+            <h4 class="card-title">User Approved</h4>
+            <h5 class="card-subtitle">Organisation details</h5>
+
+
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-dark font-medium fs-4">S.no</th>
+                            <th class="text-dark font-medium fs-4">Title</th>
+                            <th class="text-dark font-medium fs-4">Information</th>
+                            <!-- <th class="text-dark font-medium fs-4">Actions</th> -->
+                        </tr>
+                    </thead>
+                    <tbody *ngFor='let ts of user_data'>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <h4 class="card-title">Image</h4>
+                            </td>
+                            <td><img src="{{ts.image}}" alt="" style="height:60px ;"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <h4 class="card-title">Email</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.email}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <h4 class="card-title">Address</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.address}}</h5>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.city}}</h5>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.state}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <h4 class="card-title">Phone number</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.phonenumber}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <h4 class="card-title">Bank account number</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.bankacnumber}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>
+                                <h4 class="card-title">IFSC number</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.ifsc}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>
+                                <h4 class="card-title">Bank branch</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.bankbranch}}</h5>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>
+                                <h4 class="card-title">GST number</h4>
+                            </td>
+                            <td>
+                                <h5 class="card-subtitle text-muted mt-1">{{ts.gst}}</h5>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</section>

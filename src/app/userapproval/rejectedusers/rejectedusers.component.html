@@ -30,6 +30,7 @@
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
                         <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                        <th class="text-dark font-medium fs-4">User info</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,11 +51,16 @@
                             <td>
                                 {{ts.clinicDetails.phonenumber}}
                             </td>
+                            <td>
+                                <button class="btn btn-light-primary btn-sm"
+                                    [routerLink]="['/det/userapproval/userdetail/',ts.clinicDetails.userToken]"><i
+                                        class="bi bi-info"></i></button>
+                            </td>
                         </ng-container>
                     </tr>
                     <tr *ngIf="!table_state">
                         <td class="text-center" colspan="5">No Rejected Users ..!</td>
-                        </tr>
+                    </tr>
                 </tbody>
             </table>
         </div>
