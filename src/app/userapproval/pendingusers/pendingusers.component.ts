@@ -18,17 +18,17 @@ function joinDictionaries(clinics, statuses) {
   return joinedData;
 }
 
-function check_table_status(object: any){
-  for (let obj in object){
+function check_table_status(object: any) {
+  for (let obj in object) {
     // console.log("object",object[0]["statuscode"])
-    if(object[obj]) {
-      if (object[obj]["statuscode"] === "WA4000"){
-      return true;
+    if (object[obj]) {
+      if (object[obj]['statusdesc']['0']['statuscode'] === 'WA4000') {
+        return true;
+      }
     }
   }
-}
 
-return false;
+  return false;
 }
 @Component({
   selector: 'app-pendingusers',
@@ -48,7 +48,6 @@ export class PendingusersComponent {
   user_status: any;
   userdatasubscribtion: Subscription;
   table_state = false;
-
 
   constructor(
     public router: Router,
@@ -123,14 +122,15 @@ export class PendingusersComponent {
       .subscribe(
         (res: any) => {
           this.user_details = res;
-          console.log(this.user_details);
-          this.user_datas = this.user_details['user'];
-          this.user_status = this.user_details['state'];
-          this.user_data = joinDictionaries(this.user_datas, this.user_status);
+          console.log('USer details', this.user_details.user);
+          // this.user_datas = this.user_details['user'];
+          // this.user_status = this.user_details['state'];
+          // this.user_data = joinDictionaries(this.user_datas, this.user_status);
+          this.user_data = this.user_details.user;
           this.filteredData = this.user_data;
-          this.table_state = check_table_status(this.user_data)
+          this.table_state = check_table_status(this.user_data);
           // console.log(this.user_datas, this.user_status);
-          console.log(this.user_data,this.table_state);
+          console.log(this.user_data, this.table_state);
           // console.log(this.filteredData)
         },
         (error: any) => {

@@ -57,9 +57,10 @@ export class AdminService {
     );
   }
 
-  approveuser(userToken: any) {
+  approveuser(userToken: any, adminToken: any) {
     const body = {
       userToken: userToken,
+      adminToken: adminToken,
     };
     console.log(body);
     return this.http.put(`${environment.apiUrl}/api/admin/approveuser`, body);

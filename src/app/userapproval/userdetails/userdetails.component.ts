@@ -122,7 +122,7 @@ export class UserdetailsComponent {
         .subscribe(
           (res: any) => {
             this.UserDetails = res;
-            // console.log('My details', this.UserDetails['profile']);
+            // console.log('My details', this.UserDetails);
             const userObject = this.UserDetails['profile'];
             const percentageCompletion: string = calculatePercentageCompletion(
               userObject,
@@ -182,25 +182,25 @@ export class UserdetailsComponent {
     return this.reject_form.controls;
   }
 
-  onSubmit() {
-    this.submiiterdform = true;
-    if (this.form.invalid) {
-      return;
-    }
+  // onSubmit() {
+  //   this.submiiterdform = true;
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
 
-    this.adminservice
-      .approveuser(this.userId)
-      .pipe(first())
-      .subscribe({
-        next: () => {},
-        error: (error) => {
-          // this.alertService.error(error);
-          this.loading = false;
-        },
-      });
+  //   this.adminservice
+  //     .approveuser(this.userId,)
+  //     .pipe(first())
+  //     .subscribe({
+  //       next: () => {},
+  //       error: (error) => {
+  //         // this.alertService.error(error);
+  //         this.loading = false;
+  //       },
+  //     });
 
-    this.router.navigate(['/det/userapproval/approvedusers']);
-  }
+  //   this.router.navigate(['/det/userapproval/approvedusers']);
+  // }
 
   Reject() {
     this.submitted = true;

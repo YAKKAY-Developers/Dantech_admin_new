@@ -35,32 +35,32 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let ts of filteredData'>
-                        <ng-container *ngIf="ts.statuscode == 'WA4000'">
+                        <ng-container *ngIf="ts.statusdesc['0'].statuscode == 'WA4000'">
                             <td class="fs-4">
                                 {{ts.clinicid}}
                             </td>
                             <td>
-                                {{ts.clinicDetails.clinicName}}
+                                {{ts.clinicName}}
                             </td>
                             <td>
-                                {{ts.clinicDetails.email}}
+                                {{ts.email}}
                             </td>
                             <td>
-                                {{ts.clinicDetails.address}}
+                                {{ts.address}}
                             </td>
                             <td>
-                                {{ts.clinicDetails.phonenumber}}
+                                {{ts.phonenumber}}
                             </td>
                             <td>
                                 <button class="btn btn-light-primary btn-sm"
-                                    [routerLink]="['/det/userapproval/checklist/',ts.clinicDetails.userToken]"><i
+                                    [routerLink]="['/det/userapproval/checklist/',ts.userToken]"><i
                                         class="bi bi-info"></i></button>
                             </td>
                         </ng-container>
-                        </tr>
-                        <tr *ngIf="!table_state">
-                            <td class="text-center" colspan="6">No Pending Users ..!</td>
-                            </tr>
+                    </tr>
+                    <tr *ngIf="!table_state">
+                        <td class="text-center" colspan="6">No Pending Users ..!</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

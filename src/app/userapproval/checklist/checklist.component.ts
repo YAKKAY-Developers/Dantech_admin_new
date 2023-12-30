@@ -103,6 +103,8 @@ export class ChecklistComponent implements OnInit {
   // check prescence
   gst_no = false;
   img_uploaded = false;
+  //admin
+  adminToken: any;
 
   constructor(
     public router: Router,
@@ -116,6 +118,8 @@ export class ChecklistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    this.adminToken = adminToken;
     this.activatedRoute.params.subscribe((paramsId) => {
       this.userToken = paramsId['id'];
       this.userId = this.userToken;
@@ -193,7 +197,7 @@ export class ChecklistComponent implements OnInit {
     }
 
     this.adminservice
-      .approveuser(this.userId)
+      .approveuser(this.userId, this.adminToken)
       .pipe(first())
       .subscribe({
         next: () => {},
