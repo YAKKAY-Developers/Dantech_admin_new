@@ -11,6 +11,7 @@ import { TaskComponent } from './task/task.component';
 import { AddclientComponent } from './addclient/addclient.component';
 import { OrdersComponent } from './orders/orders.component';
 import { authGuard } from '../helpers/auth.guard';
+import { CreateNewUserComponent } from './create-new-user/create-new-user.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,12 @@ const routes: Routes = [
         component: AddclientComponent,
         canActivate: [authGuard],
       },
+
+      {
+        path: 'newuser',
+        component:CreateNewUserComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
 ];
@@ -57,6 +64,7 @@ const routes: Routes = [
     TaskComponent,
     AddclientComponent,
     OrdersComponent,
+    CreateNewUserComponent,
   ],
   imports: [
     CommonModule,

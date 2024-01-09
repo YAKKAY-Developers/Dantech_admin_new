@@ -19,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '/auth/user/register',
+    path: '/det/pages/newuser',
     title: 'Add users',
     icon: 'bi bi-person-add',
     class: '',

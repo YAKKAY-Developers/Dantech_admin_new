@@ -227,14 +227,14 @@
                   <span class="me-3">Order Assignment: <b>Not Assigned</b></span>
                   <div>
                     <label name="">Status</label>
-                    <select class="form-control" name="service" id="service" placeholder="Order Date">
+                    <select class="form-control form-select" name="service" id="service" placeholder="Order Date">
                       <option value="Crown">Started</option>
                       <option value="Denture">Not yet started</option>
                       <option value="Partials">Completed</option>
 
                     </select>
                     <label name="">Assign To</label>
-                    <select class="form-control" name="service" id="service" placeholder="Order Date">
+                    <select class="form-control form-select" name="service" id="service" placeholder="Order Date">
                       <option value="Crown">Mold team</option>
                       <option value="Denture">Production team</option>
                       <option value="Partials">QC team</option>
@@ -243,7 +243,7 @@
 
                     <!--To change later-->
                     <label name="">Delivery</label>
-                    <select class="form-control" name="service" id="service" placeholder="Order Date">
+                    <select class="form-control form-select" name="service" id="service" placeholder="Order Date">
                       <option value="Crown">Local</option>
                       <option value="Denture">International</option>
 
@@ -310,7 +310,7 @@
                   <label for="service">&nbsp;Service</label>
                 </div>
                 <div class="col-10">
-                  <select class="form-control" [(ngModel)]="selectedService" name="service" id="service">
+                  <select class="form-control form-select" [(ngModel)]="selectedService" name="service" id="service">
                     <option value="Crown">Crown</option>
                     <option value="Denture">Denture</option>
                     <option value="Partials">Partials</option>
