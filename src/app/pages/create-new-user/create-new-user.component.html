@@ -4,17 +4,22 @@
       <div class="container">
        <div class="row" >
          <div class="card">
-           <form [formGroup]="register">
+           <form [formGroup]="register" (ngSubmit)="onSubmit()">
                <h1>Create Account</h1>
-               <div class="overflow-auto">
+               <div>
 
+                <div class="row">
+
+                <div class = "col-6">
                    <input type="text" formControlName="name" class="form-control" data-bs-toggle="tooltip"
                        data-bs-placement="right" data-bs-title="This top tooltip is themed via CSS variables."
                        [ngClass]="{ 'is-invalid': reg_submitted && r['name'].errors }" placeholder="Clinic name" />
                    <div *ngIf="reg_submitted&& r['name'].errors" class="invalid-feedback">
                        <div *ngIf="r['name'].errors && r['name'].errors['required']">Name is required</div>
                    </div>
+                </div>
 
+                <div class = "col-6">
                    <input type="email" formControlName="email" class="form-control"
                        [ngClass]="{ 'is-invalid': reg_submitted && r['email'].errors }" placeholder="Email" />
                    <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
@@ -23,7 +28,10 @@
                    <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
                        <div *ngIf="r['email'].errors && r['email'].errors['email']">Check your email address</div>
                    </div>
-
+                   </div>
+                </div>
+              
+<br>
                    <input type="text" formControlName="address" class="form-control"
                        [ngClass]="{ 'is-invalid': reg_submitted && r['address'].errors }" placeholder="Address" />
                    <div *ngIf="reg_submitted && r['address'].errors" class="invalid-feedback">
@@ -32,6 +40,8 @@
                    <div *ngIf="reg_submitted && r['address'].errors" class="invalid-feedback">
                        <div *ngIf="r['address'].errors && r['address'].errors['maxlength']">Use less than 50 word</div>
                    </div>
+                  
+<br>
 
                    <input type="text" formControlName="phonenumber" class="form-control"
                        [ngClass]="{ 'is-invalid': reg_submitted && r['phonenumber'].errors }"
@@ -45,6 +55,8 @@
                        <div *ngIf="r['phonenumber'].errors && r['phonenumber'].errors['pattern']">Should contain only
                            numerals(10)</div>
                    </div>
+
+<br>    
 
                    <input type="password" formControlName="password" class="form-control"
                        [ngClass]="{ 'is-invalid': reg_submitted && r['password'].errors }" placeholder="Password" />
@@ -67,7 +79,7 @@
                            </div>
                        </div>
                    </div>
-
+<br>    
                    <input type="password" formControlName="confirmpassword" class="form-control"
                        [ngClass]="{ 'is-invalid': reg_submitted && r['confirmpassword'].errors }"
                        placeholder="Confirm Password" />
@@ -88,9 +100,11 @@
                        *ngIf="RegisterError">
                        {{error_message}}</p>
 
-                   <button type="button" (click)="Register()">Sign Up</button>
+                   <button  type="submit" (click)="Register()">Sign Up</button>
                </div>
            </form>
+           <br>
+
          </div>
       </div>
        </div>

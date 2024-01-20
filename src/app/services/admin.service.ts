@@ -75,9 +75,9 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}/api/admin/rejectuser`, body);
   }
 
-  getallorders(userToken: any) {
+  getallorders(adminToken: any) {
     const body = {
-      userToken: userToken,
+      userToken: adminToken,
     };
     return this.http.post(`${environment.apiUrl}/api/admin/getallorder`, body);
   }

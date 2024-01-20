@@ -10,14 +10,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  {
-    path: '/auth/login',
-    title: 'Login',
-    icon: 'bi bi-box-arrow-in-right',
-    class: 'disabled',
-    extralink: false,
-    submenu: [],
-  },
+  // {
+  //   path: '/auth/login',
+  //   title: 'Login',
+  //   icon: 'bi bi-box-arrow-in-right',
+  //   class: 'disabled',
+  //   extralink: false,
+  //   submenu: [],
+  // },
   {
     path: '/det/pages/newuser',
     title: 'Add users',
