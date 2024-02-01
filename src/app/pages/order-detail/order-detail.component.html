@@ -306,7 +306,7 @@
               </div>
             </div>
             <div class="col-2">
-              <button (click)="addOrder()" class="btn btn-success btn-sm">Apply</button>
+              <!-- <button (click)="addOrder()" class="btn btn-success btn-sm">Apply</button> -->
             </div>
           </div>
 
@@ -458,9 +458,10 @@
                 <td class="fs-4">{{ order.taskDueDate | date }}</td>
 
 
-                <td>
+                <!-- <td>
                   <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
-                    <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee">
+                    <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
                       <option *ngFor="let person of plaster" [value]="person">{{ person }}</option>
                     </select>
                   </ng-container>
@@ -504,7 +505,53 @@
                
 
 
+                </td> -->
+             
+                <td>
+                  <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
+                    <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of plaster" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
+                
+                  <ng-container *ngIf="order.task === 'Scanning'">
+                    <select class="form-control form-select" name="scan" id="scan" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of scan" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
+                
+                  <ng-container *ngIf="order.task === 'Milling' || order.task === 'Sintering'">
+                    <select class="form-control form-select" name="production" id="production" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of production" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
+                
+                  <ng-container *ngIf="order.task === 'Designing'">
+                    <select class="form-control form-select" name="design" id="design" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of design" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
+                
+                  <ng-container *ngIf="order.task === 'Layering / Trimming' || order.task === 'Glazing'">
+                    <select class="form-control form-select" name="layer" id="layer" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of layer" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
+                
+                  <ng-container *ngIf="order.task === 'Dispatch' || order.task === 'Production Check'">
+                    <select class="form-control form-select" name="qc" id="qc" placeholder="Assignee" [(ngModel)]="order.assignee">
+                      <option value="" disabled selected>Select Assignee</option>
+                      <option *ngFor="let person of qc" [value]="person">{{ person }}</option>
+                    </select>
+                  </ng-container>
                 </td>
+             
+             
               </tr>
             </tbody>
             <tfoot>

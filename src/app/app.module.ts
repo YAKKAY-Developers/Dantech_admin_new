@@ -6,9 +6,9 @@ import {
 } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
-
+import { ErrorInterceptor } from './helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullComponent } from './layouts/full/full.component';
 import { NavigationComponent } from './shared/header/navigation.component';
@@ -46,6 +46,7 @@ import { BlankComponent } from './layouts/blank/blank.component';
       provide: LocationStrategy,
       useClass: PathLocationStrategy
     },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

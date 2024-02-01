@@ -19,7 +19,8 @@ export class OrderDetailComponent  {
 
 
 
-  orders: Array<{ service: string, orderDate: Date, task: string, taskDueDate: Date }> = [];
+  orders: Array<{ service: string, orderDate: Date, task: string, taskDueDate: Date, assignee: string }> = [];
+
   plaster: any[] = ['Varun', 'Hari', 'Dhamu'];
   qc: any[] = ['Shiva', 'Santhanam'];
   design:any[] =['Jasvin', 'Maharoof', 'sandesh', 'athira', 'Lakshmi'];
@@ -224,35 +225,37 @@ files: 'assets/images/files/1.jpg',
   }
 
  
-  addOrder(): void {
-    this.orders = [];  // Clear the orders array before adding new orders
+  // addOrder(): void {
+  //   this.orders = [];  // Clear the orders array before adding new orders
 
-    if (this.selectedService && this.orderDate) {
-      const tasksForService = this.taskMap[this.selectedService];
-      if (tasksForService) {
+  //   if (this.selectedService && this.orderDate) {
+  //     const tasksForService = this.taskMap[this.selectedService];
+  //     if (tasksForService) {
 
-        // Iterate through tasks for the selected service and calculate due dates.
+  //       // Iterate through tasks for the selected service and calculate due dates.
+
         
-        for (const task in tasksForService) {
-          if (tasksForService.hasOwnProperty(task)) {
-            const taskDueDate = new Date(this.orderDate);
-            const dueDateOffset = tasksForService[task];
-            taskDueDate.setDate(taskDueDate.getDate() + dueDateOffset);
-            this.orders.push({
-              service: this.selectedService,
-              orderDate: this.orderDate,
-              task: task,
-              taskDueDate: taskDueDate
-            });
-          }
-        }
-      }
+        
+  //       for (const task in tasksForService) {
+  //         if (tasksForService.hasOwnProperty(task)) {
+  //           const taskDueDate = new Date(this.orderDate);
+  //           const dueDateOffset = tasksForService[task];
+  //           taskDueDate.setDate(taskDueDate.getDate() + dueDateOffset);
+  //           this.orders.push({
+  //             service: this.selectedService,
+  //             orderDate: this.orderDate,
+  //             task: task,
+  //             taskDueDate: taskDueDate
+  //           });
+  //         }
+  //       }
+  //     }
 
-      // Reset form fields
-      this.selectedService = '';
-      this.orderDate = null;
-    }
-  }
+  //     // Reset form fields
+  //     this.selectedService = '';
+  //     this.orderDate = null;
+  //   }
+  // }
 
 
   addOrdertaskAssign(): void {
@@ -261,34 +264,32 @@ files: 'assets/images/files/1.jpg',
     if (this.selectedService && this.orderDate) {
       const tasksForService = this.taskMap[this.selectedService];
       if (tasksForService) {
-        console.log('Tasks for Service:', tasksForService); // Log the tasks for the selected service
-  
+        let accumulatedOffset = 0;
+
         for (const task in tasksForService) {
           if (tasksForService.hasOwnProperty(task)) {
-            const taskDueDate = new Date(this.orderDate);
             const dueDateOffset = tasksForService[task];
-            taskDueDate.setDate(taskDueDate.getDate() + dueDateOffset);
+            accumulatedOffset += dueDateOffset;
+        
+            const taskDueDate = new Date(this.orderDate);
+            taskDueDate.setDate(taskDueDate.getDate() + accumulatedOffset);
+        
             this.orders.push({
               service: this.selectedService,
               orderDate: this.orderDate,
               task: task,
-              taskDueDate: taskDueDate
+              taskDueDate: taskDueDate,
+              assignee: '' // Initialize assignee as an empty string
             });
-            console.log('Added task:', task);
           }
         }
-  
-        console.log('Final Orders:', this.orders); // Log the final orders array
-
-              // Set the flag to show the "Next" button
-              this.isNextButtonVisible = true;
+        this.isNextButtonVisible = true;
       }
-  
+
       this.selectedService = '';
       this.orderDate = null;
 
-        // Force Angular to detect changes
-  this.cdr.detectChanges();
+      this.cdr.detectChanges();
 
     }
   }

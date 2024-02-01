@@ -69,6 +69,45 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
+  {
+    path: '',
+    title: 'Workflow',
+    icon: 'bi bi-diagram-3',
+    class: 'd-none',
+    extralink: false,
+    submenu: [
+      {
+        path: '/det/pages/createworkflow',
+        title: 'Create Workflow',
+        icon: 'bi bi-plus-circle',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
+      {
+        path: '/det/userapproval/approvedusers',
+        title: 'Create Departments',
+        icon: 'bi bi-people-fill',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
+
+      {
+        path: '/det/userapproval/approvedusers',
+        title: 'Add Employeess',
+        icon: 'bi bi-person-fill-add',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+      
+    ],
+    expanded: false,
+  },
+
   // {
   //   path: '/pages/toporders',
   //   title: 'All orders',
