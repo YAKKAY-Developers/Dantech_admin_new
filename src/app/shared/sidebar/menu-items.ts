@@ -77,32 +77,32 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [
       {
-        path: '/det/pages/createworkflow',
-        title: 'Create Workflow',
+        path: '/det/pages/workflow',
+        title: 'All Workflow',
         icon: 'bi bi-plus-circle',
         class: '',
         extralink: false,
         submenu: [],
       },
 
-      {
-        path: '/det/userapproval/approvedusers',
-        title: 'Create Departments',
-        icon: 'bi bi-people-fill',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
+      // {
+      //   path: '/det/userapproval/approvedusers',
+      //   title: 'Create Departments',
+      //   icon: 'bi bi-people-fill',
+      //   class: '',
+      //   extralink: false,
+      //   submenu: [],
+      // },
 
 
-      {
-        path: '/det/userapproval/approvedusers',
-        title: 'Add Employeess',
-        icon: 'bi bi-person-fill-add',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
+      // {
+      //   path: '/det/userapproval/approvedusers',
+      //   title: 'Add Employeess',
+      //   icon: 'bi bi-person-fill-add',
+      //   class: '',
+      //   extralink: false,
+      //   submenu: [],
+      // },
       
     ],
     expanded: false,

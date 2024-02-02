@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="container ">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <h4 class="card-title">Workflows</h4>
+                    <h5 class="card-subtitle">Overview of all Workflows</h5>
+                    <div class="row">
+                        <div class="col-10">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                                (ngModelChange)="filterData()" autocomplete="off" placeholder="List of all workflow">
+                        </div>
+                        <div class="col-2 align-self-center">
+                            <button class="login-button" data-bs-toggle="modal" data-bs-target="#modalid">Add
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sortColumn('workflowid')" class="text-dark font-medium fs-4">
+                                            Workflow ID
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('worflowName')" class="text-dark font-medium fs-4">
+                                            Workflow Name
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th  class="text-dark font-medium fs-4">
+                                            Actions &nbsp; <i class="bi bi-arrow-down-up" ></i></th>
+                                       <!--  <th (click)="sortColumn('Specialisation')" class="text-dark font-medium fs-4">
+                                            Specialization &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                    </tr> -->
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let ts of filteredData'>
+                                        <td class="fs-4">
+                                            {{ts.workflowid}}
+                                        </td>
+                                        <td>
+                                            {{ts.worflowName}}
+                                        </td>
+                                       <td>
+                                        <button class="btn btn-outline-primary btn-sm" ><i
+                                            class="bi bi-info"  [routerLink]="['/det/pages/workflowdetail/',ts.workflowid]" ></i></button>
+                                            &nbsp;
+                                            <button class="btn btn-outline-warning btn-sm"><i
+                                                class="bi bi-pencil" [routerLink]="['/det/pages/workflowdetail/',ts.workflowid]"></i></button>
+                                        </td>
+                                       <!--- <td>
+                                            {{ts.Specialisation}}
+                                        </td> -->
+                                    </tr>
+                                    <tr *ngIf="!filteredData">
+                                        <td colspan="3" style="text-align: center;"> No Workflows..! </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalid">
+    <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Doctor details</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                <div class="modal-body">
+
+                    <input type="text" formControlName="workflow_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['workflow_name'].errors }" placeholder="Workflow name" />
+                    <div *ngIf=" submitted && f['workflow_name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['workflow_name'].errors && f['workflow_name'].errors['required']">WorkFlow name is
+                            required
+                        </div>
+                        <div *ngIf="f['workflow_name'].errors && f['workflow_name'].errors['minlength']">Enter valid name
+                        </div>
+                    </div><br>
+                   
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" data-bs-dismiss="modal">Add
+                        Workflow</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

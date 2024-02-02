@@ -12,7 +12,8 @@ import { AddclientComponent } from './addclient/addclient.component';
 import { OrdersComponent } from './orders/orders.component';
 import { authGuard } from '../helpers/auth.guard';
 import { CreateNewUserComponent } from './create-new-user/create-new-user.component';
-import { CreateWorkflowComponent } from './create-workflow/create-workflow.component';
+import { WorkflowsComponent } from './workflows/workflows.component';
+import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
 
 const routes: Routes = [
   {
@@ -52,13 +53,19 @@ const routes: Routes = [
         component:CreateNewUserComponent,
         canActivate: [authGuard],
       },
-
-
       {
-        path: 'createworkflow',
-        component:CreateWorkflowComponent,
+        path: 'workflow',
+        component:WorkflowsComponent,
         canActivate: [authGuard],
       },
+      {
+        path: 'workflowdetail/:id',
+        component:WorkflowDetailComponent,
+        canActivate: [authGuard],
+      },
+
+
+      
     ],
   },
 ];
@@ -73,7 +80,9 @@ const routes: Routes = [
     AddclientComponent,
     OrdersComponent,
     CreateNewUserComponent,
-    CreateWorkflowComponent,
+    WorkflowsComponent,
+    WorkflowDetailComponent,
+   
   ],
   imports: [
     CommonModule,

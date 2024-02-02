@@ -36,6 +36,8 @@
                                 class="bi bi-arrow-down-up"></i></th>
                         <th (click)="sortColumn('product')" class="text-dark font-medium fs-4">Service &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
+                         <th (click)="sortColumn('Step')" class="text-dark font-medium fs-4">Step &nbsp; <i
+                                    class="bi bi-arrow-down-up"></i></th>
                         <th class="text-dark font-medium fs-4">Files</th>
                         <th class="text-dark font-medium fs-4">Actions</th>
                     </tr>
@@ -47,8 +49,9 @@
                             ...{{ ts.orderid.slice(-3) }}
                         </td>
                         <td>
-                            <!-- <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span> -->
-                            <span>Not yet Started</span>
+                            <!-- <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3">Not yet Started</span> -->
+                            <span class="badge rounded-pill bg-warning">Not yet Started</span>
+                       
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
@@ -65,24 +68,31 @@
                         <td class="fs-4">
                             {{ts.service}}
                         </td>
+
+                        <td class="fs-4">
+                            Mold Creation
+
+                        </td>
                         <td class="fs-4">
                             <img src="assets/images/files/1.jpg" alt="user" width="50">
-                        </td>
+                        </td >
+
+                        
                         <td>
                             <button class="btn btn-light-primary btn-sm"
                                 [routerLink]="['/det/pages/orderdetail/',ts.orderid]"><i
                                     class="bi bi-info"></i></button>
                             &nbsp;
 
-                            <button *ngIf="ts.woStatus === 'Yet to start'" class="btn btn-warning btn-sm"><i
+                            <!-- <button *ngIf="ts.woStatus === 'Yet to start'" class="btn btn-warning btn-sm"><i
                                     class="bi bi-person-plus"></i></button>
                             <button *ngIf="ts.woStatus === 'In Production'" class="btn btn-warning disabled btn-sm"><i
                                     class="bi bi-person-plus"></i></button>
-                            &nbsp;
+                            &nbsp; -->
                             <!-- <button class="btn btn-success btn-sm" value="{{ts.workOrder}}" name="workOrder"
                                 (click)="start($event)"><i class="bi bi-play"></i></button> -->
 
-                            <button class="btn btn-secondary disabled btn-sm"><i class="bi bi-pause"></i></button>
+                            <!-- <button class="btn btn-secondary disabled btn-sm"><i class="bi bi-pause"></i></button> -->
 
                         </td>
 

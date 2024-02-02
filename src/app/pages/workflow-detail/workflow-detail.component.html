@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="container ">
+      <div class="row">
+          <div class="card">
+              <div class="card-body">
+
+                   <!-- title -->
+                   <h4 class="card-title">Workflows</h4>
+                   <h5 class="card-subtitle">Overview of all Workflows</h5>
+                 
+    <button  class="btn btn-outline-primary btn-sm" (click)="addRow()">Add</button>
+  
+    <form (ngSubmit)="onSubmit()">
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th class="text-dark font-medium fs-4">Step</th>
+              <th class="text-dark font-medium fs-4">Option</th>
+              <th class="text-dark font-medium fs-4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of rows; let i = index">
+              <td>
+                <select  class="form-control form-select"[(ngModel)]="row.step" name="step{{i}}">
+                  <option value="step1">Step 1</option>
+                  <option value="step2">Step 2</option>
+                  <option value="step3">Step 3</option>
+                </select>
+              </td>
+              <td>
+                <select  class="form-control form-select" [(ngModel)]="row.option" name="option{{i}}">
+                  <option value="Plaster">Plaster team</option>
+                  <option value="Designer">Designer team</option>
+                  <option value="Ceramic">Ceramic team </option>
+                </select>
+              </td>
+              <td>
+                <button (click)="removeRow(i)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <button type="submit">Submit</button>
+        </div>
+      </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  

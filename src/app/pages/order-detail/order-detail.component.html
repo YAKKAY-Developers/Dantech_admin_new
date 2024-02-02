@@ -13,10 +13,10 @@
     <button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button"
       role="tab" aria-controls="assignment" aria-selected="false">Order Assignment</button>
   </li>
-  <li class="nav-item" role="presentation">
+  <!-- <li class="nav-item" role="presentation">
     <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task" type="button" role="tab"
       aria-controls="task" aria-selected="false">Task</button>
-  </li>
+  </li> -->
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="taskassign-tab" data-bs-toggle="tab" data-bs-target="#taskassign" type="button"
       role="tab" aria-controls="tasktaskassign" aria-selected="false">Task Assignment</button>
@@ -442,6 +442,7 @@
                 <th class="text-dark font-medium fs-4">Order Date</th>
                 <th class="text-dark font-medium fs-4">Task</th>
                 <th class="text-dark font-medium fs-4">Task Due Date</th>
+                <th class="text-dark font-medium fs-4">Task Status</th>
                 <th class="text-dark font-medium fs-4">Assignment</th>
               </tr>
             </thead>
@@ -449,65 +450,10 @@
               <tr *ngFor="let order of orders">
                 <td class="fs-4">{{ order.service }}</td>
                 <td class="fs-4">{{ order.orderDate | date }}</td>
-                <td class="fs-4">
-                  {{ order.task }}
-
-                </td>
-
-
+                <td class="fs-4">{{ order.task }}</td>
                 <td class="fs-4">{{ order.taskDueDate | date }}</td>
-
-
-                <!-- <td>
-                  <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
-                    <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
-                      <option value="" disabled selected>Select Assignee</option>
-                      <option *ngFor="let person of plaster" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-                  <ng-container *ngIf="order.task === 'Scanning'">
-                    <select class="form-control form-select" name="scan" id="scan" placeholder="Assignee">
-                      <option *ngFor="let person of scan" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-                  <ng-container *ngIf="order.task === 'Milling' ||  order.task === 'Sintering'">
-                    <select class="form-control form-select" name="production" id="production" placeholder="Assignee">
-                      <option *ngFor="let person of production" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-                  
-                  <ng-container *ngIf="order.task === 'Designing'">
-                    <select class="form-control form-select" name="design" id="design" placeholder="Assignee">
-                      <option *ngFor="let person of design" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-
-                      
-                  <ng-container *ngIf="order.task === 'Layering / Trimming' || order.task === 'Glazing'">
-                    <select class="form-control form-select" name="layer" id="layer" placeholder="Assignee">
-                      <option *ngFor="let person of layer" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-
-                  <ng-container *ngIf="order.task === 'Dispatch' || order.task === 'Production Check'">
-                    <select class="form-control form-select" name="qc" id="qc" placeholder="Assignee">
-                      <option *ngFor="let person of qc" [value]="person">{{ person }}</option>
-                    </select>
-                  </ng-container>
-
-
-
-               
-
-
-                </td> -->
-             
-                <td>
+                <td class="fs-4"> <span class="badge text-bg-warning">Not Yet Started</span></td>
+                <td class="fs-4">
                   <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
                     <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
                       <option value="" disabled selected>Select Assignee</option>
@@ -549,9 +495,7 @@
                       <option *ngFor="let person of qc" [value]="person">{{ person }}</option>
                     </select>
                   </ng-container>
-                </td>
-             
-             
+                </td>                                                    
               </tr>
             </tbody>
             <tfoot>

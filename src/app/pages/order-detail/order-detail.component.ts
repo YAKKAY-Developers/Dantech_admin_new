@@ -19,7 +19,7 @@ export class OrderDetailComponent  {
 
 
 
-  orders: Array<{ service: string, orderDate: Date, task: string, taskDueDate: Date, assignee: string }> = [];
+  orders: Array<{ service: string, orderDate: Date, task: string, taskDueDate: Date, assignee: string  }> = [];
 
   plaster: any[] = ['Varun', 'Hari', 'Dhamu'];
   qc: any[] = ['Shiva', 'Santhanam'];
@@ -280,6 +280,7 @@ files: 'assets/images/files/1.jpg',
               task: task,
               taskDueDate: taskDueDate,
               assignee: '' // Initialize assignee as an empty string
+              
             });
           }
         }
