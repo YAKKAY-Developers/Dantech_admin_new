@@ -443,7 +443,7 @@
                 <th class="text-dark font-medium fs-4">Task</th>
                 <th class="text-dark font-medium fs-4">Task Due Date</th>
                 <th class="text-dark font-medium fs-4">Task Status</th>
-                <th class="text-dark font-medium fs-4">Assignment</th>
+                <!-- <th class="text-dark font-medium fs-4">Assignment</th> -->
               </tr>
             </thead>
             <tbody>
@@ -453,7 +453,7 @@
                 <td class="fs-4">{{ order.task }}</td>
                 <td class="fs-4">{{ order.taskDueDate | date }}</td>
                 <td class="fs-4"> <span class="badge text-bg-warning">Not Yet Started</span></td>
-                <td class="fs-4">
+                <!-- <td class="fs-4">
                   <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
                     <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
                       <option value="" disabled selected>Select Assignee</option>
@@ -495,7 +495,7 @@
                       <option *ngFor="let person of qc" [value]="person">{{ person }}</option>
                     </select>
                   </ng-container>
-                </td>                                                    
+                </td>                                                     -->
               </tr>
             </tbody>
             <tfoot>
