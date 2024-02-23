@@ -77,8 +77,27 @@ export class AdminService {
 
   getallorders(adminToken: any) {
     const body = {
-      userToken: adminToken,
+      adminToken: adminToken,
     };
-    return this.http.post(`${environment.apiUrl}/api/admin/getallorder`, body);
+    return this.http.post(`${environment.apiUrl}/api/admin/getallOrders`, body);
   }
+
+  getallworkflow(adminToken: any){
+    const body = {
+      adminToken: adminToken,
+        };
+        var URL = `${environment.apiUrl}/api/workflow/getallworkflow`;
+        return this.http.post<any>(URL, body).pipe(
+          map((res: any) => {
+            return res;
+          })
+        );
+    
+    }
+
+
+
 }
+
+
+

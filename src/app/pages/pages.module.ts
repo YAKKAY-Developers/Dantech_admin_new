@@ -82,6 +82,7 @@ const routes: Routes = [
     CreateNewUserComponent,
     WorkflowsComponent,
     WorkflowDetailComponent,
+
    
   ],
   imports: [

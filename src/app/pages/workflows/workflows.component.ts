@@ -10,6 +10,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 // import { UserService } from 'src/app/services/user.service';
 // import { OrderService } from 'src/app/services/order.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 import { first } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -21,6 +22,7 @@ import { Subscription } from 'rxjs';
 export class WorkflowsComponent {
   user_data: any;
   viewdatalist: any[] = [];
+  adminToken:any;
   // doctor list
   docdetails: any;
   doc_count = false;
@@ -39,9 +41,12 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
 
 },
 
-
-
   ];
+
+// filteredData: any[] = [];
+myWorkflow:any[]=[];
+
+
   sortcolumn: string = '';
   sortDirection: string = 'asc';
   // adddoctors form
@@ -71,12 +76,14 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private authservice: AuthService,
+    private adminservice : AdminService
   
   ) {}
 
   ngOnInit(): void {
     // user
     const { userToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
     const { fullName } = JSON.parse(localStorage.getItem('user') ?? '{}');
     const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
     const { status } = JSON.parse(localStorage.getItem('user') ?? '{}');
@@ -84,6 +91,7 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
     this.userId = userToken;
     this.userType = fullName;
     
+
 
 
 
@@ -130,7 +138,16 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
   filterData() {
     if (this.searchText) {
    
-      this.filteredData = this.doc_data.filter((item: any) => {
+      // this.filteredData = this.doc_data.filter((item: any) =>
+      this.adminservice.getallworkflow(this.adminToken).subscribe(res=>{
+        this.myWorkflow = res;
+        console.log(this.myWorkflow)
+      })
+      
+      
+      this.filteredData = this.myWorkflow.filter((item: any) =>
+
+      {
 
         return (
           item.workflowid.toLowerCase().includes(this.searchText.toLowerCase()) ||
@@ -142,7 +159,7 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
     } 
     
     else {
-      this.filteredData = this.doc_data; // If searchText is empty, show all data
+      this.filteredData = this.myWorkflow; // If searchText is empty, show all data
     }
   }
 }

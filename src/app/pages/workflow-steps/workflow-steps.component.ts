@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-workflow-detail',
-  templateUrl: './workflow-detail.component.html',
-  styleUrls: ['./workflow-detail.component.scss']
+  selector: 'app-workflow-steps',
+  templateUrl: './workflow-steps.component.html',
+  styleUrls: ['./workflow-steps.component.scss']
 })
 export class WorkflowDetailComponent {
   rows: any[] = [];
@@ -31,8 +31,6 @@ export class WorkflowDetailComponent {
   }
 
   onSubmit(): void {
-    
-    
     const formData = this.rows.map((row, index) => ({
       step: `step${index + 1}`,
       option: row.option

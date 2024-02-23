@@ -26,17 +26,17 @@
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th (click)="sortColumn('workOrder')" class="text-dark font-medium fs-4">Order ID &nbsp; <i
+                        <th (click)="sortColumn('orderToken')" class="text-dark font-medium fs-4">Order ID &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('woStatus')" class="text-dark font-medium fs-4">Status &nbsp; <i
+                        <th (click)="sortColumn('orderStatusId')" class="text-dark font-medium fs-4">Status &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('doctor')" class="text-dark font-medium fs-4">Doctor &nbsp; <i
+                        <th (click)="sortColumn('consultantName')" class="text-dark font-medium fs-4">Consultant &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('date')" class="text-dark font-medium fs-4">Order date &nbsp; <i
+                        <th (click)="sortColumn('orderDate')" class="text-dark font-medium fs-4">Order date &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('product')" class="text-dark font-medium fs-4">Service &nbsp; <i
+                        <th (click)="sortColumn('service')" class="text-dark font-medium fs-4">Service &nbsp; <i
                                 class="bi bi-arrow-down-up"></i></th>
-                         <th (click)="sortColumn('Step')" class="text-dark font-medium fs-4">Step &nbsp; <i
+                         <th (click)="sortColumn('requiredDate')" class="text-dark font-medium fs-4">Required Date &nbsp; <i
                                     class="bi bi-arrow-down-up"></i></th>
                         <th class="text-dark font-medium fs-4">Files</th>
                         <th class="text-dark font-medium fs-4">Actions</th>
@@ -45,32 +45,38 @@
                 <tbody>
                     <tr *ngFor='let ts of filteredData'>
                         <td class="fs-4">
-                            <!-- {{ts.orderid}} -->
-                            ...{{ ts.orderid.slice(-3) }}
+                            {{ts.orderToken}}
+                            <!-- ...{{ ts.orderid.slice(-3) }} -->
                         </td>
                         <td>
-                            <!-- <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3">Not yet Started</span> -->
-                            <span class="badge rounded-pill bg-warning">Not yet Started</span>
-                       
+                            
+                            <ng-container [ngSwitch]="ts.orderStatusId">
+                                <span class="badge rounded-pill bg-secondary" *ngSwitchCase="1">Order Created</span>
+                                <span class="badge rounded-pill bg-info" *ngSwitchCase="2">Order Started</span>
+                                <span class="badge rounded-pill bg-warning" *ngSwitchCase="3">Order In Progress</span>
+                                <span class="badge rounded-pill bg-success" *ngSwitchCase="4">Order Completed</span>
+                                <span class="badge rounded-pill bg-danger" *ngSwitchCase="5">Order Rejected</span>
+                            </ng-container>
+                            
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src='assets/images/users/user.svg' alt="user" width="30" class="rounded-circle">
                                 <div class="ms-3">
-                                    <h5 class="mb-0 font-medium">{{ts.doctorname}}</h5>
-                                    <span class="text-muted">{{ts.doctorid}}</span>
+                                    <h5 class="mb-0 font-medium">{{ts.consultantName}}</h5>
+                                    <!-- <span class="text-muted">{{ts.doctorid}}</span> -->
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <h5 class="mb-0 fw-normal">{{ts.createdAt | date:'yyyy-MM-dd'}}</h5>
+                            <h5 class="mb-0 fw-normal">{{ts.orderDate | date:'yyyy-MM-dd'}}</h5>
                         </td>
                         <td class="fs-4">
                             {{ts.service}}
                         </td>
 
                         <td class="fs-4">
-                            Mold Creation
+                            {{ts.requiredDate | date:'yyyy-MM-dd'}}
 
                         </td>
                         <td class="fs-4">
@@ -80,7 +86,7 @@
                         
                         <td>
                             <button class="btn btn-light-primary btn-sm"
-                                [routerLink]="['/det/pages/orderdetail/',ts.orderid]"><i
+                                [routerLink]="['/det/pages/orderdetail/',ts.orderToken]"><i
                                     class="bi bi-info"></i></button>
                             &nbsp;
 

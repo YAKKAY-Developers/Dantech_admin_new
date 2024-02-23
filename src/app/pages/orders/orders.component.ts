@@ -28,6 +28,30 @@ export class OrdersComponent {
     private adminservice: AdminService
   ) {}
 
+  // sortColumn(column: string) {
+  //   // Check if the column is already sorted
+  //   if (this.sortcolumn === column) {
+  //     // If the same column is clicked again, toggle the sorting order
+  //     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  //   } else {
+  //     // If a different column is clicked, set the sorting column and direction
+  //     this.sortcolumn = column;
+  //     this.sortDirection = 'asc'; // Default to ascending order
+  //   }
+
+  //   // Sort the filtered data based on the chosen column and direction
+  //   this.filteredData.sort((a, b) => {
+  //     const valueA = a[column];
+  //     const valueB = b[column];
+
+  //     if (this.sortDirection === 'asc') {
+  //       return valueA.localeCompare(valueB);
+  //     } else {
+  //       return valueB.localeCompare(valueA);
+  //     }
+  //   });
+  // }
+
   sortColumn(column: string) {
     // Check if the column is already sorted
     if (this.sortcolumn === column) {
@@ -41,8 +65,12 @@ export class OrdersComponent {
 
     // Sort the filtered data based on the chosen column and direction
     this.filteredData.sort((a, b) => {
-      const valueA = a[column];
-      const valueB = b[column];
+      let valueA = a[column];
+      let valueB = b[column];
+
+      // Convert to string for comparison
+      valueA = valueA.toString();
+      valueB = valueB.toString();
 
       if (this.sortDirection === 'asc') {
         return valueA.localeCompare(valueB);
@@ -50,18 +78,21 @@ export class OrdersComponent {
         return valueB.localeCompare(valueA);
       }
     });
-  }
+}
+
 
   exportToCSV() {
     // Create a CSV string
-    const headers = ['Order ID', 'Status', 'Doctor', 'Order date', 'Service'];
+    const headers = ['Order ID', 'Status', 'Consultant', 'Order date', 'Service', 'Step'];
     const csvData = this.filteredData.map((item) => {
       return [
-        item.workOrder,
-        item.woStatus,
-        item.doctor,
-        item.date,
-        item.product,
+        item.orderToken,
+        item.orderStatusId,
+        item.consultantName,
+        item.orderDate,
+        item.service,
+        item.requiredDate
+
       ];
     });
 
@@ -91,11 +122,11 @@ export class OrdersComponent {
       .subscribe(
         (res: any) => {
           this.order_details = res;
-          console.log(this.order_details.order);
-          if (this.order_details.order['length'] > 0) {
+          console.log(this.order_details.getallOrders.length);
+          if (this.order_details.getallOrders.length > 0) {
             this.orders_length = true;
           }
-          this.order_data = this.order_details.order;
+          this.order_data = this.order_details.getallOrders;
           this.filteredData = this.order_data;
           console.log(this.order_data);
         },
@@ -119,12 +150,12 @@ export class OrdersComponent {
         console.log('My data', this.filteredData);
         // Customize the filtering logic as needed
         return (
-          item.doctor.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.workOrder.includes(this.searchText) ||
-          item.date.includes(this.searchText) ||
-          item.product.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.status.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.woStatus.toLowerCase().includes(this.searchText.toLowerCase())
+          item.consultantName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          item.orderToken.includes(this.searchText) ||
+          item.orderDate.includes(this.searchText) ||
+          item.service.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          item.requiredDate.includes(this.searchText) ||
+          item.orderStatusId.includes(this.searchText)
         );
       });
     } else {
