@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs';
+import { AdminService } from 'src/app/services/admin.service';
+
 
 @Component({
   selector: 'app-workflow-step',
@@ -10,10 +14,41 @@ export class WorkflowStepComponent implements OnInit {
   rows: any[] = [];
   form: FormGroup;
   submitted = false;
+  activatedRoute: any;
+  workflowToken:any;
+  loading: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  adminToken:any;
+  accessToken:any;
+  result: any;
+
+  constructor(private formBuilder: FormBuilder,  
+    private route: ActivatedRoute,
+    private router: Router,
+    private adminservice : AdminService ) { }
 
   ngOnInit() {
+
+
+    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+this.adminToken = adminToken;
+this.accessToken = accessToken;
+
+
+
+
+   // Retrieve token from route parameters
+   this.route.params.subscribe(params => {
+    this.workflowToken = params['id'];
+    // Now you can use this.workflowToken in your component logic
+    console.log("workflowToken", this.workflowToken);
+  });
+
+
+  
+
+     
     // Initialize the form with empty values
     this.form = this.formBuilder.group({});
   }
@@ -23,6 +58,10 @@ export class WorkflowStepComponent implements OnInit {
   }
 
   addRow(): void {
+
+
+     
+  
     // Add a new row to the form and rows array
     const stepId = this.rows.length;
     this.rows.push({
@@ -52,8 +91,10 @@ export class WorkflowStepComponent implements OnInit {
       return;
     }
 
+
+
     const formData = this.rows.map(row => ({
-      stepId: row.stepId + 1,
+      // stepId: row.stepId + 1,
       stepName: this.form.get(`stepName${row.stepId}`)?.value,
       stepDuration: this.form.get(`stepDuration${row.stepId}`)?.value,
       isPrimary: this.form.get(`isPrimary${row.stepId}`)?.value ? "1" : "0" // Convert boolean to "1" or "0"
@@ -61,7 +102,29 @@ export class WorkflowStepComponent implements OnInit {
 
     console.log(formData);
 
-    // You can handle form submission logic here
+ 
+    this.loading = true;
+
+    this.adminservice.createStep(this.adminToken, this.accessToken, this.workflowToken, formData)
+    .pipe(first())
+    .subscribe({
+  
+      next: (res) => {
+        this.result = res;
+        window.confirm(this.result.message);
+        this.router.navigate(['det/pages/workflowdetail/',this.workflowToken]);
+      
+      },
+      error: (error) => {
+        // this.error_message = error.error.message;
+        console.log(error);
+
+      },
+    });
+
+
+
+
   }
 
   resetForm(): void {

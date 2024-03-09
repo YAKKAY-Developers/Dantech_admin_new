@@ -27,23 +27,13 @@
                       <input type="text" class="form-control" [value]="'Step ' + (i + 1)" readonly>
                     </td>
                     <td>
-                      <input type="text" formControlName="stepName{{i}}" class="form-control" data-bs-toggle="tooltip"
-                        data-bs-placement="right" data-bs-title="This top tooltip is themed via CSS variables."
-                        [ngClass]="{ 'is-invalid': submitted && f['stepName' + i]?.errors }"
-                        placeholder="Step Name" />
-                      <div *ngIf="submitted && f['stepName' + i]?.errors" class="invalid-feedback">
-                        <div *ngIf="f['stepName' + i]?.errors && f['stepName' + i]?.errors['required']">Step Name is
-                          required</div>
-                        <div *ngIf="f['stepName' + i]?.errors && f['stepName' + i]?.errors['pattern']">Step Name must
-                          contain only letters</div>
-                        <div *ngIf="f['stepName' + i]?.errors && f['stepName' + i]?.errors['minlength']">Step Name must
-                          be at least 3 characters</div>
-                      </div>
+
+                      <select formControlName="stepName{{i}}" class="form-control form-select">
+                        <option *ngFor="let step of stepResult" [value]="step.id">{{step.stepName}}</option>
+                      </select>
                     </td>
 
-       
-
-
+    
                     <td>
                       <select formControlName="departmentName{{i}}" class="form-control form-select">
                         <option *ngFor="let department of departmentResult" [value]="department.id">{{department.fullName}}</option>

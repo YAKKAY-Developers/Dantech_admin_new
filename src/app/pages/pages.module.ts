@@ -16,6 +16,8 @@ import { WorkflowsComponent } from './workflows/workflows.component';
 import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
 import { DepartmentComponent } from './department/department.component';
 import { WorkflowStepComponent } from './workflow-step/workflow-step.component';
+import { EditWorkflowstepsComponent } from './edit-workflowsteps/edit-workflowsteps.component';
+import { AllDepartmentComponent } from './all-department/all-department.component';
 
 const routes: Routes = [
   {
@@ -79,6 +81,14 @@ const routes: Routes = [
       },
 
 
+      {
+        path: 'editStep/:id',
+        component:EditWorkflowstepsComponent,
+        canActivate: [authGuard],
+      },
+
+
+
       
     ],
   },
@@ -98,6 +108,8 @@ const routes: Routes = [
     WorkflowDetailComponent,
     DepartmentComponent,
     WorkflowStepComponent,
+    EditWorkflowstepsComponent,
+    AllDepartmentComponent,
 
    
   ],

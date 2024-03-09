@@ -7,9 +7,9 @@
             <!-- title -->
             <h4 class="card-title">Add Steps to the Workflow</h4>
             <h5 class="card-subtitle">Steps of Workflow</h5>
-  
-            <button class="btn btn-outline-primary btn-sm" (click)="addRow()">Add</button>
-  
+            <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-primary btn-sm" (click)="addRow()">ADD NEW STEP</button>
+  </div>
             <form (ngSubmit)="onSubmit()" [formGroup]="form">
               <div class="table-responsive">
                 <table class="table align-middle">
@@ -40,15 +40,15 @@
                       </td>
   
                       <td>
-                        <button type="button" (click)="removeRow(i)">Remove</button>
+                        <button type="button" (click)="removeRow(i)">Delete</button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
   
                 <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-primary me-2">Submit</button>
-                  <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+                  <button type="submit" class="btn btn-outline-primary me-2">Submit</button>
+                  <button type="button" class="btn btn-outline-warning" (click)="resetForm()">Reset</button>
                 </div>
               </div>
             </form>

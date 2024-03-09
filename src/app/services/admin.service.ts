@@ -104,6 +104,22 @@ export class AdminService {
       }));
   }
 
+  getAllSteps(adminToken: any, accessToken:any, workflowToken:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "workflowToken":workflowToken
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/workflow/getAllSteps`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
+
 
   getAllDepartments(adminToken: any, accessToken:any):Observable<any> {
     let headers = new HttpHeaders({
@@ -315,6 +331,41 @@ export class AdminService {
       };
     
       return this.http.post(`${environment.apiUrl}/api/admin/registerDepartment`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    createStep(adminToken: any, accessToken:any, workflowToken:any, steps: any):Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken,
+        "workflowToken":workflowToken,
+        "steps":steps
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/workflow/createStep`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+    mapDeptSteps(adminToken: any, accessToken:any, workflowToken:any, formData: any):Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken,
+        "workflowToken":workflowToken,
+        "formData":formData
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/workflow/mapDeptSteps`, body, { headers })
         .pipe(map((res: any) => {
           return res;
         }));

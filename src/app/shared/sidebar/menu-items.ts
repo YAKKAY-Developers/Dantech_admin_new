@@ -77,14 +77,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
 
-      {
-        path: '/det/pages/addDept',
-        title: 'Create Department',
-        icon: 'bi bi-box-seam',
-        class: '',
-        extralink: false,
-        submenu: [],
-      },
+    
 
       // {
       //   path: '/det/userapproval/approvedusers',
@@ -109,6 +102,32 @@ export const ROUTES: RouteInfo[] = [
     expanded: false,
   },
 
+
+  {
+    path: '',
+    title: 'Departments',
+    icon: 'bi bi-diagram-3',
+    class: 'd-none',
+    extralink: false,
+    submenu: [
+      {
+        path: '/det/pages/addDept',
+        title: 'Create Department',
+        icon: 'bi bi-box-seam',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
+    
+      
+    ],
+    expanded: false,
+  },
+
+
+
+  
 
 
 

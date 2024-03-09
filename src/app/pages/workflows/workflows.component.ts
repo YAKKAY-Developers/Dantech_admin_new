@@ -127,6 +127,7 @@ myWorkflow:any[]=[];
       this.myWorkflow = res.getallworkflow;
       this.filteredData = this.myWorkflow ;
       console.log(this.myWorkflow)
+      window.location.reload();
     })
 
 

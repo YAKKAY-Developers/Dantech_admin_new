@@ -1,121 +1,10 @@
-// import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { AdminService } from 'src/app/services/admin.service';
-// import { Router, ActivatedRoute } from '@angular/router';
-// import { first } from 'rxjs/operators';
-// import {
-//   FormBuilder,
-//   FormGroup,
-//   Validators,
-//   FormControl,
-// } from '@angular/forms';
-// import { Subscription } from 'rxjs';
 
-// @Component({
-//   selector: 'app-workflow-detail',
-//   templateUrl: './workflow-detail.component.html',
-//   styleUrls: ['./workflow-detail.component.scss']
-// })
-// export class WorkflowDetailComponent {
-//   rows: any[] = [];
-//   form: FormGroup;
-//   loading = false;
-//   submitted = false;
-//   result: any;
-
-
-//   adminToken: any;
-//   accessToken: any;
-
-//   departmentsubscribtion: Subscription;
-//   departmentResult: any;
-
-//   filteredData: any[] = [
-//     {
-//       workflowid: 'WF202301',
-//       worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
-//     },
-//     {
-//       workflowid: 'WF202302',
-//       worflowName: 'Online - Tooth Support Cercon Crown & Bridges'
-//     },
-//   ];
-
-//   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder,
-//     private route: ActivatedRoute,
-//     private router: Router,
-//     private adminservice: AdminService) { }
-
-//   ngOnInit() {
-
-//     const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
-//     const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
-//     this.adminToken = adminToken;
-//     this.accessToken = accessToken;
-
-//     this.departmentsubscribtion = this.adminservice
-//     .getAllDepartments(this.adminToken, this.accessToken)
-//     .subscribe(
-//       (res: any) => {
-//         this.departmentResult = res.getAllDepartments;
-//         console.log(this.departmentResult);
-//       },
-//       (error: any) => {
-//         console.log(error);
-//       }
-//     );
-//     this.form = this.formBuilder.group(
-//       {
-
-//         stepName: [
-//           '',
-//           [
-//             Validators.required,
-//             Validators.pattern(/^([A-z]+\s*)+$/),
-//             Validators.minLength(3),
-//           ],
-//         ],
-//       }
-
-//     );
-//   }
-
-//   get f() {
-//     return this.form.controls;
-//   }
-
-//   addRow(): void {
-//     this.rows.push({ step: 'step1', stepName: 'A', departmentName: '' });
-//   }
-
-//   removeRow(index: number): void {
-//     this.rows.splice(index, 1);
-//   }
-
-//   onSubmit(): void {
-
-
-
-
-
-
-//     const formData = this.rows.map((row, index) => ({
-//       step: `step${index + 1}`,
-//       stepName: row.stepName,
-//       departmentName: row.departmentName
-//     }));
-
-//     // Assuming you have an API endpoint to post the data
-//     this.httpClient.post('your-api-endpoint', { data: formData })
-//       .subscribe(response => {
-//         console.log('Data submitted successfully:', response);
-//       });
-//   }
-// }
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from 'src/app/services/admin.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-workflow-detail',
@@ -127,10 +16,18 @@ export class WorkflowDetailComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   departmentResult: any[];
+  stepResult : any[];
   adminToken: any;
   accessToken: any;
+  workflowToken:any
+  loading: boolean;
+  result: any;
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private adminService: AdminService) { }
+  constructor(private httpClient: HttpClient, 
+    private formBuilder: FormBuilder, 
+    private adminService: AdminService,
+    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,) { }
 
   ngOnInit() {
     const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
@@ -138,11 +35,29 @@ export class WorkflowDetailComponent implements OnInit {
     this.adminToken = adminToken;
     this.accessToken = accessToken;
 
+     // Retrieve token from route parameters
+   this.route.params.subscribe(params => {
+    this.workflowToken = params['id'];
+    // Now you can use this.workflowToken in your component logic
+    console.log("workflowToken", this.workflowToken);
+  });
+
+
     this.form = this.formBuilder.group({});
 
     this.adminService.getAllDepartments(this.adminToken, this.accessToken).subscribe(
       (res: any) => {
         this.departmentResult = res.getAllDepartments;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+
+
+    this.adminService.getAllSteps(this.adminToken, this.accessToken, this.workflowToken).subscribe(
+      (res: any) => {
+        this.stepResult = res.getSteps;
       },
       (error: any) => {
         console.log(error);
@@ -164,7 +79,7 @@ export class WorkflowDetailComponent implements OnInit {
     this.rows.push(newRow);
     
     // Initialize form controls for the new row
-    this.form.addControl('stepName' + stepId, this.formBuilder.control('', [Validators.required, Validators.pattern(/^([A-Za-z]+\s*)+$/), Validators.minLength(3)]));
+    this.form.addControl('stepName' + stepId, this.formBuilder.control('', ));
     this.form.addControl('departmentName' + stepId, this.formBuilder.control(''));
   }
   
@@ -186,12 +101,35 @@ export class WorkflowDetailComponent implements OnInit {
       const departmentId = this.form.get('departmentName' + row.stepId)?.value || ''; // Handle undefined departmentId
       return {
         stepId: row.stepId + 1,
-        stepName: stepName || '', // Handle undefined stepName
+        stepName: stepName || '', // Hanzdle undefined stepName
         departmentId: departmentId
       };
     });
   
     console.log(formData);
+
+    this.loading = true;
+
+
+    this.adminService.mapDeptSteps(this.adminToken, this.accessToken, this.workflowToken, formData)
+    .pipe(first())
+    .subscribe({
+  
+      next: (res) => {
+        this.result = res;
+        window.confirm(this.result.message);
+        
+      
+      },
+      error: (error) => {
+        // this.error_message = error.error.message;
+        console.log(error);
+
+      },
+    });
+
+
+    
 
     // this.httpClient.post('your-api-endpoint', { data: formData }).subscribe(
     //   response => {

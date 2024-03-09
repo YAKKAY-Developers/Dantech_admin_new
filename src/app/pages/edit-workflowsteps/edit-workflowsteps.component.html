@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="container ">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <h4 class="card-title">WorkFlow Name : {{workflowName}}</h4>
+                    <h5 class="card-subtitle"> Steps of {{workflowName}}</h5>
+                    <div class="row">
+                        <!-- <div class="col-10">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                                (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your steps">
+                        </div>
+                        <div class="col-2 align-self-center">
+                            <button class="login-button" data-bs-toggle="modal" data-bs-target="#modalid">Add
+                            </button>
+                        </div> -->
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sortColumn('stepToken')" class="text-dark font-medium fs-4">
+                                            Step ID
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('stepName')" class="text-dark font-medium fs-4">
+                                            Step name
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('stepDuration')" class="text-dark font-medium fs-4">
+                                           Step Duration &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('isPrimary')" class="text-dark font-medium fs-4">
+                                            Is Final step &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                            <th  class="text-dark font-medium fs-4">
+                                                Actions &nbsp; </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let ts of filteredData'>
+                                        <td class="fs-4">
+                                            {{ts.stepToken.slice(-3)}} 
+                                        </td>
+                                        <td>
+                                            {{ts.stepName}}
+                                        </td>
+                                        <td>
+                                            {{ts.stepDuration}}
+                                        </td>
+                                        <td>
+                                            {{ts.isPrimary}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-warning btn-sm"><i
+                                                class="bi bi-pencil" [routerLink]="['/det/pages/workflowstep/',ts.workflowToken]"></i></button>
+                                        
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!filteredData">
+                                        <td colspan="3" style="text-align: center;"> No Steps..! </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
