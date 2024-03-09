@@ -17,49 +17,49 @@
             <table class="table align-middle">
                 <thead>
                     <tr>
-                        <th (click)="sortColumn('clinicid')" class="text-dark font-medium fs-4">Organization ID
+                        <th (click)="sortColumn('userToken')" class="text-dark font-medium fs-4">ID
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('clinicName')" class="text-dark font-medium fs-4">Organization
-                            Name
+                        <th (click)="sortColumn('fullName')" class="text-dark font-medium fs-4">Clinic Name
+                         
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('email')" class="text-dark font-medium fs-4">Organization
-                            Email
+                        <th (click)="sortColumn('email')" class="text-dark font-medium fs-4">Email
+                          
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('address')" class="text-dark font-medium fs-4">Organization
-                            address
+                        <th (click)="sortColumn('mobileNumber')" class="text-dark font-medium fs-4">Phone Number
+                        
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th (click)="sortColumn('phonenumber')" class="text-dark font-medium fs-4">Phonenumber
+                        <th (click)="sortColumn('registerNumber')" class="text-dark font-medium fs-4">Register Number
                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                        <th class="text-dark font-medium fs-4">User info</th>
+                        <th class="text-dark font-medium fs-4">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor='let ts of filteredData'>
-                        <ng-container *ngIf="ts.statusdesc['0'].statuscode == 'AC2000'">
+                        <ng-container>
                             <td class="fs-4">
-                                {{ts.clinicid}}
+                                {{ts.userToken.slice(0, 4)}}
                             </td>
                             <td>
-                                {{ts.clinicName}}
+                                {{ts.fullName}}
                             </td>
                             <td>
                                 {{ts.email}}
                             </td>
                             <td>
-                                {{ts.address}}
+                                {{ts.mobileNumber}}
                             </td>
                             <td>
-                                {{ts.phonenumber}}
+                                {{ts.registerNumber}}
                             </td>
                             <td>
                                 <button class="btn btn-light-primary btn-sm"
-                                    [routerLink]="['/det/userapproval/userdetail/',ts.userToken]"><i
-                                        class="bi bi-info"></i></button>
+                                [routerLink]="['/det/userapproval/checklist/',ts.userToken]"><i
+                                    class="bi bi-info"></i></button>
                             </td>
                         </ng-container>
                     </tr>
-                    <tr *ngIf="!table_state">
-                        <td class="text-center" colspan="5">No Approved Users ..!</td>
+                    <tr *ngIf="filteredData.length == 0">
+                        <td class="text-center" colspan="6">No Approved Users ..!</td>
                     </tr>
                 </tbody>
             </table>

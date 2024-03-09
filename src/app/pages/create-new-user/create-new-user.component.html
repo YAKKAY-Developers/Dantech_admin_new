@@ -4,105 +4,114 @@
       <div class="container">
        <div class="row" >
          <div class="card">
-           <form [formGroup]="register" (ngSubmit)="onSubmit()">
-               <h1>Create Account</h1>
-               <div>
+         
+            <h4 class="card-title">Create Account</h4>
 
-                <div class="row">
 
-                <div class = "col-6">
-                   <input type="text" formControlName="name" class="form-control" data-bs-toggle="tooltip"
-                       data-bs-placement="right" data-bs-title="This top tooltip is themed via CSS variables."
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['name'].errors }" placeholder="Clinic name" />
-                   <div *ngIf="reg_submitted&& r['name'].errors" class="invalid-feedback">
-                       <div *ngIf="r['name'].errors && r['name'].errors['required']">Name is required</div>
-                   </div>
-                </div>
-
-                <div class = "col-6">
-                   <input type="email" formControlName="email" class="form-control"
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['email'].errors }" placeholder="Email" />
-                   <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
-                       <div *ngIf="r['email'].errors && r['email'].errors['required']">Email is required</div>
-                   </div>
-                   <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
-                       <div *ngIf="r['email'].errors && r['email'].errors['email']">Check your email address</div>
-                   </div>
-                   </div>
-                </div>
-              
-<br>
-                   <input type="text" formControlName="address" class="form-control"
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['address'].errors }" placeholder="Address" />
-                   <div *ngIf="reg_submitted && r['address'].errors" class="invalid-feedback">
-                       <div *ngIf="r['address'].errors && r['address'].errors['required']">Address is required</div>
-                   </div>
-                   <div *ngIf="reg_submitted && r['address'].errors" class="invalid-feedback">
-                       <div *ngIf="r['address'].errors && r['address'].errors['maxlength']">Use less than 50 word</div>
-                   </div>
+            <h5 class="card-subtitle">Admin User Creation</h5>
+    
+            <div>
+                <form [formGroup]="register" (ngSubmit)="onSubmit()">
                   
-<br>
-
-                   <input type="text" formControlName="phonenumber" class="form-control"
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['phonenumber'].errors }"
-                       placeholder="Phone Number" />
-                   <div *ngIf="reg_submitted && r['phonenumber'].errors" class="invalid-feedback">
-                       <div *ngIf="r['phonenumber'].errors && r['phonenumber'].errors['required']">Phone number is
-                           required
-                       </div>
-                   </div>
-                   <div *ngIf="reg_submitted && r['phonenumber'].errors" class="invalid-feedback">
-                       <div *ngIf="r['phonenumber'].errors && r['phonenumber'].errors['pattern']">Should contain only
-                           numerals(10)</div>
-                   </div>
-
-<br>    
-
-                   <input type="password" formControlName="password" class="form-control"
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['password'].errors }" placeholder="Password" />
-                   <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
-                       <div *ngIf="r['password'].errors && r['password'].errors['required']">Password is required</div>
-                   </div>
-                   <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
-                       <div *ngIf="r['password'].errors && r['password'].errors['minLength']">Password should have more
-                           than
-                           8 characters</div>
-                   </div>
-
-                   <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
-                       <div *ngIf="r['password'].errors && r['password'].errors['pattern']"> Your current password is
-                           weak.
-                           <div>
-                               <p>
-                                   Must contain atleast a capital letter, a symbol and two numbers.
-                               </p>
-                           </div>
-                       </div>
-                   </div>
-<br>    
-                   <input type="password" formControlName="confirmpassword" class="form-control"
-                       [ngClass]="{ 'is-invalid': reg_submitted && r['confirmpassword'].errors }"
-                       placeholder="Confirm Password" />
-                   <div *ngIf="reg_submitted && r['confirmpassword'].errors" class="invalid-feedback">
-                       <div *ngIf="r['confirmpassword'].errors && r['confirmpassword'].errors['required']">Confirm
-                           password
-                           is required</div>
-                   </div>
-                   <div *ngIf="reg_submitted && r['confirmpassword'].errors" class="invalid-feedback">
-                       <div *ngIf="r['confirmpassword'].errors && r['confirmpassword'].errors['pattern']">Password
-                           does
-                           not match
-                       </div>
-                   </div>
-
-
-                   <p class="p-0 m-0" style="font-style: italic;color: #ff0000;font-size: small;"
-                       *ngIf="RegisterError">
-                       {{error_message}}</p>
-
-                   <button  type="submit" (click)="Register()">Sign Up</button>
-               </div>
-           </form>
+                    <div>
+    
+                        <input type="text" formControlName="firstName" class="form-control" data-bs-toggle="tooltip"
+                            data-bs-placement="right" data-bs-title="This top tooltip is themed via CSS variables."
+                            [ngClass]="{ 'is-invalid': reg_submitted && r['firstName'].errors }" placeholder="firstName name" />
+                        <div *ngIf="reg_submitted&& r['firstName'].errors" class="invalid-feedback">
+                            <div *ngIf="r['firstName'].errors && r['firstName'].errors['required']">First Name is required</div>
+                        </div>
+    
+                        <div *ngIf="reg_submitted && r['firstName'].errors" class="invalid-feedback">
+                            <div *ngIf="r['firstName'].errors && r['firstName'].errors['firstName']">Check your First Name</div>
+                        </div>
+    
+    
+    
+                        <input type="text" formControlName="lastName" class="form-control" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-title="This top tooltip is themed via CSS variables."
+                        [ngClass]="{ 'is-invalid': reg_submitted && r['lastName'].errors }" placeholder="lastName name" />
+                    <div *ngIf="reg_submitted&& r['lastName'].errors" class="invalid-feedback">
+                        <div *ngIf="r['lastName'].errors && r['lastName'].errors['required']">First Name is required</div>
+                    </div>
+    
+                    <div *ngIf="reg_submitted && r['lastName'].errors" class="invalid-feedback">
+                        <div *ngIf="r['lastName'].errors && r['lastName'].errors['lastName']">Check your First Name</div>
+                    </div>
+    
+    
+    
+                        <input type="email" formControlName="email" class="form-control"
+                            [ngClass]="{ 'is-invalid': reg_submitted && r['email'].errors }" placeholder="Email" />
+                        <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
+                            <div *ngIf="r['email'].errors && r['email'].errors['required']">Email is required</div>
+                        </div>
+                        <div *ngIf="reg_submitted && r['email'].errors" class="invalid-feedback">
+                            <div *ngIf="r['email'].errors && r['email'].errors['email']">Check your email address</div>
+                        </div>
+    
+                        <input type="text" formControlName="mobileNumber" class="form-control"
+                            [ngClass]="{ 'is-invalid': reg_submitted && r['mobileNumber'].errors }"
+                            placeholder="Phone Number" />
+                        <div *ngIf="reg_submitted && r['mobileNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="r['mobileNumber'].errors && r['mobileNumber'].errors['required']">Phone number is
+                                required
+                            </div>
+                        </div>
+                        <div *ngIf="reg_submitted && r['mobileNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="r['mobileNumber'].errors && r['mobileNumber'].errors['pattern']">Should contain only
+                                numerals(10)</div>
+                        </div>
+    
+                        
+    
+                        <input type="text" formControlName="registerNumber" class="form-control"
+                            [ngClass]="{ 'is-invalid': reg_submitted && r['registerNumber'].errors }"
+                            placeholder="registerNumber" />
+                        <div *ngIf="reg_submitted && r['registerNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="r['registerNumber'].errors && r['registerNumber'].errors['required']">regNumber number is
+                                required
+                            </div>
+                        </div>
+                        <div *ngIf="reg_submitted && r['registerNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="r['registerNumber'].errors && r['registerNumber'].errors['pattern']">Should contain only
+                                numerals(10)</div>
+                        </div>
+    
+                        <input type="password" formControlName="password" class="form-control"
+                            [ngClass]="{ 'is-invalid': reg_submitted && r['password'].errors }" placeholder="Password" />
+                        <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
+                            <div *ngIf="r['password'].errors && r['password'].errors['required']">Password is required</div>
+                        </div>
+                        <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
+                            <div *ngIf="r['password'].errors && r['password'].errors['minLength']">Password should have more
+                                than
+                                8 characters</div>
+                        </div>
+    
+                        <div *ngIf="reg_submitted && r['password'].errors" class="invalid-feedback">
+                            <div *ngIf="r['password'].errors && r['password'].errors['pattern']"> Your current password is
+                                weak.
+                                <div>
+                                    <p>
+                                        Must contain atleast a capital letter, a symbol and two numbers.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                        <p class="p-0 m-0" style="font-style: italic;color: #ff0000;font-size: small;"
+                            *ngIf="RegisterError">
+                            {{error_message}}</p>
+    
+                        <button type="submit" >Sign Up</button>
+                    </div>
+    
+                </form>
+    
+            </div>
+       
            <br>
 
          </div>
@@ -111,3 +120,4 @@
      
    </div>
 </div>
+

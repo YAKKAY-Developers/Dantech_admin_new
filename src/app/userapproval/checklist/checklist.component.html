@@ -8,7 +8,7 @@
 
 
                 <div class="table-responsive">
-                    <table class="table align-middle">
+                    <table class="table align-middle" >
                         <thead>
                             <tr>
                                 <th class="text-dark font-medium fs-4">S.no</th>
@@ -17,39 +17,29 @@
                                 <th class="text-dark font-medium fs-4">Actions</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor='let ts of user_data'>
-                            <tr>
+                        <tbody>
+                            <tr >
                                 <td>1</td>
                                 <td>
                                     <h4 class="card-title">Clinic Name</h4>
                                 </td>
                                 <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.clinicName}}</h5>
+                                    <h5 class="card-subtitle text-muted mt-1">{{user?.fullName}}</h5>
                                 </td>
                                 <td>
-                                    <input formControlName="name" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['name'].errors }" type="checkbox"
+                                    <input formControlName="fullName" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submiiterdform && f['fullName'].errors }" type="checkbox"
                                         value="0">
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>2</td>
-                                <td>
-                                    <h4 class="card-title">Image</h4>
-                                </td>
-                                <td><img src="{{ts.image}}" alt="" style="height:60px ;"></td>
-                                <td>
-                                    <input type="checkbox" formControlName="image" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['image'].errors }" value="">
-                                </td>
-                            </tr> -->
+                         
                             <tr>
                                 <td>2</td>
                                 <td>
                                     <h4 class="card-title">Email</h4>
                                 </td>
                                 <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.email}}</h5>
+                                    <h5 class="card-subtitle text-muted mt-1">{{user?.email}}</h5>
                                 </td>
                                 <td>
                                     <input formControlName="email" class="form-control"
@@ -63,9 +53,8 @@
                                     <h4 class="card-title">Address</h4>
                                 </td>
                                 <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.address}}</h5>
-                                    <!-- <h5 class="card-subtitle text-muted mt-1">{{ts.city}}</h5>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.state}}</h5> -->
+                                    <h5 class="card-subtitle text-muted mt-1">{{basicInfo?.address}}</h5>
+                                    
                                 </td>
                                 <td>
                                     <input type="checkbox" formControlName="address" class="form-control"
@@ -75,70 +64,17 @@
                             <tr>
                                 <td>4</td>
                                 <td>
-                                    <h4 class="card-title">Phone number</h4>
+                                    <h4 class="card-title">Mobile Number</h4>
                                 </td>
                                 <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.phonenumber}}</h5>
+                                    <h5 class="card-subtitle text-muted mt-1">{{user?.mobileNumber}}</h5>
                                 </td>
                                 <td>
-                                    <input type="checkbox" formControlName="phonenumber" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['phonenumber'].errors }"
+                                    <input type="checkbox" formControlName="mobileNumber" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submiiterdform && f['mobileNumber'].errors }"
                                         value="">
                                 </td>
                             </tr>
-                            <!-- <tr>
-                                <td>5</td>
-                                <td>
-                                    <h4 class="card-title">Bank account number</h4>
-                                </td>
-                                <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.bankacnumber}}</h5>
-                                </td>
-                                <td>
-                                    <input type="checkbox" formControlName="bankacnumber" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['bankacnumber'].errors }"
-                                        value="">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>
-                                    <h4 class="card-title">IFSC number</h4>
-                                </td>
-                                <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.ifsc}}</h5>
-                                </td>
-                                <td>
-                                    <input type="checkbox" formControlName="ifsc" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['ifsc'].errors }" value="">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>
-                                    <h4 class="card-title">Bank branch</h4>
-                                </td>
-                                <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.bankbranch}}</h5>
-                                </td>
-                                <td>
-                                    <input type="checkbox" formControlName="bankbranch" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['bankbranch'].errors }" value="">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>
-                                    <h4 class="card-title">GST number</h4>
-                                </td>
-                                <td>
-                                    <h5 class="card-subtitle text-muted mt-1">{{ts.gst}}</h5>
-                                </td>
-                                <td>
-                                    <input type="checkbox" formControlName="gst" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submiiterdform && f['gst'].errors }" value="">
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>

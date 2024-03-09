@@ -225,38 +225,6 @@ files: 'assets/images/files/1.jpg',
   }
 
  
-  // addOrder(): void {
-  //   this.orders = [];  // Clear the orders array before adding new orders
-
-  //   if (this.selectedService && this.orderDate) {
-  //     const tasksForService = this.taskMap[this.selectedService];
-  //     if (tasksForService) {
-
-  //       // Iterate through tasks for the selected service and calculate due dates.
-
-        
-        
-  //       for (const task in tasksForService) {
-  //         if (tasksForService.hasOwnProperty(task)) {
-  //           const taskDueDate = new Date(this.orderDate);
-  //           const dueDateOffset = tasksForService[task];
-  //           taskDueDate.setDate(taskDueDate.getDate() + dueDateOffset);
-  //           this.orders.push({
-  //             service: this.selectedService,
-  //             orderDate: this.orderDate,
-  //             task: task,
-  //             taskDueDate: taskDueDate
-  //           });
-  //         }
-  //       }
-  //     }
-
-  //     // Reset form fields
-  //     this.selectedService = '';
-  //     this.orderDate = null;
-  //   }
-  // }
-
 
   addOrdertaskAssign(): void {
     this.orders = [];
@@ -297,8 +265,6 @@ files: 'assets/images/files/1.jpg',
   
 
 
-  
-  
   startTask(){
     window.alert("Task Started")
   }

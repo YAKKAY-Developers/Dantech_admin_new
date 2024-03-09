@@ -154,8 +154,7 @@ export class OrdersComponent {
           item.orderToken.includes(this.searchText) ||
           item.orderDate.includes(this.searchText) ||
           item.service.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.requiredDate.includes(this.searchText) ||
-          item.orderStatusId.includes(this.searchText)
+          item.requiredDate.includes(this.searchText) 
         );
       });
     } else {

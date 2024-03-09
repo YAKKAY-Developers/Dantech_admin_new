@@ -46,7 +46,6 @@ worflowName: 'Offline - Tooth Support Cercon Crown & Bridges'
 // filteredData: any[] = [];
 myWorkflow:any[]=[];
 
-
   sortcolumn: string = '';
   sortDirection: string = 'asc';
   // adddoctors form
@@ -88,12 +87,16 @@ myWorkflow:any[]=[];
     const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
     const { status } = JSON.parse(localStorage.getItem('user') ?? '{}');
     this.accessToken = accessToken;
-    this.userId = userToken;
-    this.userType = fullName;
+    this.adminToken = adminToken;
+
+
+      // this.filteredData = this.doc_data.filter((item: any) =>
+      this.adminservice.getallworkflow(this.adminToken, this.accessToken).subscribe(res=>{
+        this.myWorkflow = res.getallworkflow;
+        this.filteredData = this.myWorkflow ;
+        console.log(this.myWorkflow)
+      })
     
-
-
-
 
     //form
     this.form = this.formBuilder.group({
@@ -104,8 +107,30 @@ myWorkflow:any[]=[];
     return this.form.controls;
   }
 
+  
+
   //form submit
   onSubmit() {
+    this.submitted = true;
+
+    console.log(this.submitted)
+
+    if (this.form.invalid) {
+      console.log(this.form.controls);
+      return;
+    }
+
+
+    this.loading = true;
+
+    this.adminservice.createworkflow(this.adminToken, this.accessToken, this.form.value).subscribe(res=>{
+      this.myWorkflow = res.getallworkflow;
+      this.filteredData = this.myWorkflow ;
+      console.log(this.myWorkflow)
+    })
+
+
+
    
   }
 
@@ -138,20 +163,13 @@ myWorkflow:any[]=[];
   filterData() {
     if (this.searchText) {
    
-      // this.filteredData = this.doc_data.filter((item: any) =>
-      this.adminservice.getallworkflow(this.adminToken).subscribe(res=>{
-        this.myWorkflow = res;
-        console.log(this.myWorkflow)
-      })
-      
-      
       this.filteredData = this.myWorkflow.filter((item: any) =>
 
       {
 
         return (
-          item.workflowid.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.worflowName.toLowerCase().includes(
+          item.id.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          item.workflowName.toLowerCase().includes(
             this.searchText.toLowerCase()
           ) 
         )

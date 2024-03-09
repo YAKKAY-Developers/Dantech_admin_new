@@ -1,34 +1,14 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { userapprovaldata, approvallist } from '../userapproval-data';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+
+import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { AdminService } from 'src/app/services/admin.service';
 
-function joinDictionaries(clinics, statuses) {
-  // Create a map to store clinics based on clinic ID
-  const clinicMap = new Map(clinics.map((clinic) => [clinic.clinicid, clinic]));
 
-  // Iterate through statuses and add clinic details where clinic IDs match
-  const joinedData = statuses.map((status) => {
-    const clinicDetails = clinicMap.get(status.clinicid);
-    return { ...status, clinicDetails };
-  });
 
-  return joinedData;
-}
-
-function check_table_status(object: any) {
-  for (let obj in object) {
-    // console.log("object",object[0]["statuscode"])
-    if (object[obj]) {
-      if (object[obj]['statusdesc']['0']['statuscode'] === 'RJ5000') {
-        return true;
-      }
-    }
-  }
-  return false;
-}
 
 @Component({
   selector: 'app-rejectedusers',
@@ -36,28 +16,69 @@ function check_table_status(object: any) {
   styleUrls: ['./rejectedusers.component.scss'],
 })
 export class RejectedusersComponent {
-  userapprovaldetails: userapprovaldata[];
-  searchText: string = '';
-  filteredData: any[] = [];
-  sortcolumn: string = '';
+  
+   //api results
+   result: any
+   basicInfo: any;
+   bankInfo: any
+   response: any;
+   consultantDetails: any;
+   consultantCount: any;
+   fullName:any
+   accessToken:any
+   adminToken:any;
+
+    // authenticate user
+  userdata: any;
+  UserDetails: any;
+  userDetailsSubscription: Subscription;
+
+//search table
+searchText: string = '';
+filteredData: any[] = [];
+sortcolumn: string = '';
   sortDirection: string = 'asc';
-  // user details
-  user_data: any;
-  user_datas: any;
-  user_details: any;
-  user_status: any;
-  userdatasubscribtion: Subscription;
-  table_state = false;
 
   constructor(
-    public router: Router,
-    private activatedRoute: ActivatedRoute,
+   
     private route: ActivatedRoute,
+    private router: Router,
     private authservice: AuthService,
-    private adminservice: AdminService
+    private http: HttpClient,
+    private adminservice:AdminService
+
   ) {}
 
-  //sortcolumn
+
+  ngOnInit() {
+
+    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { fullName } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { status } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    this.accessToken = accessToken;
+    this.adminToken = adminToken;
+
+
+
+ //Get user details:
+ this.userDetailsSubscription = this.adminservice.getRejectedUSers(this.adminToken, this.accessToken)
+ .pipe(first())
+ .subscribe({
+   next: (res) => {
+     this.response = res.users;
+     this.filteredData = this.response
+     console.log( this.response)
+   },
+   error: (error) => {
+     console.log(error.error)
+   }
+ })
+
+
+
+  }
+
   sortColumn(column: string) {
     // Check if the column is already sorted
     if (this.sortcolumn === column) {
@@ -82,60 +103,27 @@ export class RejectedusersComponent {
     });
   }
 
-  //filterdata
   filterData() {
     if (this.searchText) {
-      console.log('Hi');
-      this.filteredData = this.user_data.filter((item: any) => {
-        console.log('My data', this.filteredData);
-        // Customize the filtering logic as needed
+   
+      this.filteredData = this.response.filter((item: any) => {
+
         return (
-          item.address.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          item.email.includes(this.searchText) ||
-          item.clinicid.includes(this.searchText) ||
-          item.clinicName
-            .toLowerCase()
-            .includes(this.searchText.toLowerCase()) ||
-          item.phonenumber.toLowerCase().includes(this.searchText.toLowerCase())
+          item.userToken.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          item.fullName.toLowerCase().includes(
+            this.searchText.toLowerCase()
+          ) ||
+          item.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          item.mobileNumber.toLowerCase().includes(
+            this.searchText.toLowerCase()
+          )
+
         );
       });
-    } else {
-      this.filteredData = this.user_data; // If searchText is empty, show all data
+    } 
+    
+    else {
+      this.filteredData = this.response; // If searchText is empty, show all data
     }
-  }
-
-  // //startevent
-  // start(event: Event) {
-  //   const workOrderNumber = (event.target as HTMLButtonElement).value; // Typecast event.target to HTMLButtonElement
-  //   console.log(workOrderNumber);
-  //   // sessionStorage.setItem('workOrderNumber', JSON.stringify(workOrderNumber));
-  //   this.router.navigate(['/pages/orderdetail/', workOrderNumber]);
-  // }
-
-  //init
-  ngOnInit(): void {
-    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
-    // console.log(adminToken)
-
-    this.userdatasubscribtion = this.adminservice
-      .getallusers(adminToken)
-      .subscribe(
-        (res: any) => {
-          this.user_details = res;
-          // console.log(this.user_details);
-          // this.user_datas = this.user_details['user'];
-          // this.user_status = this.user_details['state'];
-          // this.user_data = joinDictionaries(this.user_datas, this.user_status);
-          this.user_data = this.user_details.user;
-          this.filteredData = this.user_data;
-          this.table_state = check_table_status(this.user_data);
-          // console.log(this.user_datas, this.user_status);
-          console.log(this.user_data);
-          // console.log(this.filteredData)
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      );
   }
 }

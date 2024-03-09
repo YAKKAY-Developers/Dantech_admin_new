@@ -6,15 +6,16 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { AdminService } from 'src/app/services/admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-create-new-user',
-  templateUrl: './create-new-user.component.html',
-  styleUrls: ['./create-new-user.component.scss']
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styleUrls: ['./department.component.scss']
 })
-export class CreateNewUserComponent {
+export class DepartmentComponent {
   form: FormGroup;
   loading = false;
   submitted = false;
@@ -29,27 +30,25 @@ export class CreateNewUserComponent {
   RegisterError: boolean = false;
   error_message: any;
 
+  adminToken:any;
+  accessToken:any;
+
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authservice: AuthService
+    private authservice: AuthService, 
+    private adminservice : AdminService
   ) {}
 
   ngOnInit() {
-    // this.form = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.pattern(
-    //         /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-    //       ),
-    //       Validators.minLength(8),
-    //     ],
-    //   ],
-    // });
+ 
+    const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+    const { accessToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
+this.adminToken = adminToken;
+this.accessToken = accessToken;
+
 
     this.register = this.formBuilder.group(
       {
@@ -70,13 +69,6 @@ export class CreateNewUserComponent {
             Validators.minLength(3),
           ],
         ],
-        // address: ['', [Validators.required, Validators.maxLength(100)]],
-        mobileNumber: [
-          '',
-          [Validators.required, Validators.pattern('[0-9]{10}')],
-        ],
-
-        registerNumber:['', [Validators.required]],
         password: [
           '',
           [
@@ -87,27 +79,24 @@ export class CreateNewUserComponent {
             Validators.minLength(8),
           ],
         ],
-        // confirmpassword: [
-        //   '',
-        //   [
-        //     Validators.required,
-        //     Validators.pattern(
-        //       /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-        //     ),
-        //     Validators.minLength(8),
-        //   ],
-        // ],
+
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+            ),
+            Validators.minLength(8),
+          ],
+        ],
+        
       }
-      // {
-      //   validators: this.password.bind(this),
-      // }
+      
     );
   }
 
-  // convenience getter for easy access to form fields
-  // get f() {
-  //   return this.form.controls;
-  // }
+
   get r() {
     return this.register.controls;
   }
@@ -123,23 +112,16 @@ export class CreateNewUserComponent {
       return;
     }
     this.reg_loading = true;
-    this.authservice
-      .register(this.register.value)
+    this.adminservice.registerDepartment(this.adminToken, this.accessToken, this.register.value)
       .pipe(first())
       .subscribe({
-        // next: () => {
-        //   // this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-        //   this.router.navigate(['/det/auth/login'], { relativeTo: this.route });
-        //   window.location.reload();
-        // },
+       
 
         next: (res) => {
           this.result = res;
           window.confirm(this.result.message);
           this.router.navigate(['det/userapproval/pendingusers']);
-          // get return url from query parameters or default to home page
-          // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          // this.router.navigateByUrl(returnUrl);
+        
         },
         error: (error) => {
           // this.error_message = error.error.message;

@@ -1,19 +1,116 @@
 <div class="row">
-    <div class="col-md-6 col-lg-6" *ngFor='let topcard of topcards'>
+
+   
+    <div class="col-md-6 col-lg-6" >
         <div class="card">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-{{topcard.bgcolor}} text-{{topcard.bgcolor}}">
-                        <i class={{topcard.icon}}></i>
+                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-primary text-primary">
+                        <i class= 'bi bi-bag-check'></i>
                     </div>
                     <div class="ms-3">
-                        <h3 class="mb-0 font-weight-bold">{{topcard.title}}</h3>
-                        <small class="text-muted fs-3">{{topcard.subtitle}}</small>
+                        <h3 class="mb-0 font-weight-bold">{{todayCount}}</h3>
+                        <small class="text-muted fs-3">Number of Orders today</small>
                         <br>
-                        <small class="text-muted fs-3">{{topcard.date}}</small>
+                        <small class="text-muted fs-3">{{todayDate | date}}</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <div class="col-md-6 col-lg-6" >
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-warning text-warning">
+                        <i class= 'bi bi-caret-right-square-fill'></i>
+                    </div>
+                    <div class="ms-3">
+                        <h3 class="mb-0 font-weight-bold">{{inProgressresult}}</h3>
+                        <small class="text-muted fs-3">Number of In Progress Orders</small>
+                        <br>
+                        <small class="text-muted fs-3">{{todayDate | date}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<div class="row">
+
+   
+    <div class="col-md-6 col-lg-6" >
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-success text-success">
+                        <i class= 'bi bi-bag-check'></i>
+                    </div>
+                    <div class="ms-3">
+                        <h3 class="mb-0 font-weight-bold">{{completedResult}}</h3>
+                        <small class="text-muted fs-3">Number of Completed Orders</small>
+                        <br>
+                        <small class="text-muted fs-3">{{todayDate | date}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6 col-lg-6" >
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-danger text-danger">
+                        <i class= 'bi bi-x-octagon-fill'></i>
+                    </div>
+                    <div class="ms-3">
+                        <h3 class="mb-0 font-weight-bold">{{rejectedCount}}</h3>
+                        <small class="text-muted fs-3">Number of Orders Rejected</small>
+                        <br>
+                        <small class="text-muted fs-3">{{todayDate | date}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+
+   
+    <div class="col-md-6 col-lg-6" >
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="btn btn-lg rounded-circle round round-lg fs-6 d-flex align-items-center justify-content-center bg-light-primary text-primary">
+                        <i class= 'bi bi-bag-check'></i>
+                    </div>
+                    <div class="ms-3">
+                        <h3 class="mb-0 font-weight-bold">{{allOrderCount}}</h3>
+                        <small class="text-muted fs-3">Overall Orders Count</small>
+                        <br>
+                        <small class="text-muted fs-3">{{todayDate | date}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+ 
+
+</div>
+
+
+

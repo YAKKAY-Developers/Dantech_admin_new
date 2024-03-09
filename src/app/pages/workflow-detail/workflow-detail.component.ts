@@ -23,7 +23,7 @@ export class WorkflowDetailComponent {
   constructor(private httpClient: HttpClient) {}
 
   addRow(): void {
-    this.rows.push({ step: 'step1', option: 'A' });
+    this.rows.push({ step: 'step1', stepName: 'A', departmentName :''});
   }
 
   removeRow(index: number): void {
@@ -35,7 +35,8 @@ export class WorkflowDetailComponent {
     
     const formData = this.rows.map((row, index) => ({
       step: `step${index + 1}`,
-      option: row.option
+      stepName: row.stepName,
+      departmentName :row.departmentName
     }));
   
     // Assuming you have an API endpoint to post the data

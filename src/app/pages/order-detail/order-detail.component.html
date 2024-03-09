@@ -13,10 +13,7 @@
     <button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button"
       role="tab" aria-controls="assignment" aria-selected="false">Order Assignment</button>
   </li>
-  <!-- <li class="nav-item" role="presentation">
-    <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task" type="button" role="tab"
-      aria-controls="task" aria-selected="false">Task</button>
-  </li> -->
+
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="taskassign-tab" data-bs-toggle="tab" data-bs-target="#taskassign" type="button"
       role="tab" aria-controls="tasktaskassign" aria-selected="false">Task Assignment</button>
@@ -29,9 +26,6 @@
 
 
 
-  <!-- <li class="nav-item" role="presentation">
-    <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
-  </li> -->
 </ul>
 
 
@@ -453,7 +447,7 @@
                 <td class="fs-4">{{ order.task }}</td>
                 <td class="fs-4">{{ order.taskDueDate | date }}</td>
                 <td class="fs-4"> <span class="badge text-bg-warning">Not Yet Started</span></td>
-                <!-- <td class="fs-4">
+                <td class="fs-4">
                   <ng-container *ngIf="order.task === 'Mold Creation' || order.task === 'Ditching/Die cut' || order.task === 'Quality Check' || order.task === 'Articulation'">
                     <select class="form-control form-select" name="plaster" id="plaster" placeholder="Assignee" [(ngModel)]="order.assignee">
                       <option value="" disabled selected>Select Assignee</option>
@@ -495,7 +489,7 @@
                       <option *ngFor="let person of qc" [value]="person">{{ person }}</option>
                     </select>
                   </ng-container>
-                </td>                                                     -->
+                </td>                                                    
               </tr>
             </tbody>
             <tfoot>

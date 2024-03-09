@@ -70,8 +70,10 @@ export class AuthService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/api/admin/userregister`, user);
+    console.log("Im in register service")
+    return this.http.post(`${environment.apiUrl}/api/user/register`, user);
   }
+
 
   adminregister(user: User) {
     return this.http.post(`${environment.apiUrl}/api/admin/register`, user);

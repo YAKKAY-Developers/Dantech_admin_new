@@ -19,10 +19,10 @@
                             <table class="table align-middle">
                                 <thead>
                                     <tr>
-                                        <th (click)="sortColumn('workflowid')" class="text-dark font-medium fs-4">
+                                        <th (click)="sortColumn('id')" class="text-dark font-medium fs-4">
                                             Workflow ID
                                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
-                                        <th (click)="sortColumn('worflowName')" class="text-dark font-medium fs-4">
+                                        <th (click)="sortColumn('workflowName')" class="text-dark font-medium fs-4">
                                             Workflow Name
                                             &nbsp; <i class="bi bi-arrow-down-up"></i></th>
                                         <th  class="text-dark font-medium fs-4">
@@ -34,17 +34,17 @@
                                 <tbody>
                                     <tr *ngFor='let ts of filteredData'>
                                         <td class="fs-4">
-                                            {{ts.workflowid}}
+                                            {{ts.id}}
                                         </td>
                                         <td>
-                                            {{ts.worflowName}}
+                                            {{ts.workflowName}}
                                         </td>
                                        <td>
                                         <button class="btn btn-outline-primary btn-sm" ><i
-                                            class="bi bi-info"  [routerLink]="['/det/pages/workflowdetail/',ts.workflowid]" ></i></button>
+                                            class="bi bi-info"  [routerLink]="['/det/pages/workflowdetail/',ts.workflowToken]" ></i></button>
                                             &nbsp;
-                                            <button class="btn btn-outline-warning btn-sm"><i
-                                                class="bi bi-pencil" [routerLink]="['/det/pages/workflowdetail/',ts.workflowid]"></i></button>
+                                            <!-- <button class="btn btn-outline-warning btn-sm"><i
+                                                class="bi bi-pencil" [routerLink]="['/det/pages/workflowdetail/',ts.workflowToken]"></i></button> -->
                                         </td>
                                        <!--- <td>
                                             {{ts.Specialisation}}

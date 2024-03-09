@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, RouterStateSnapshot } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -57,13 +57,20 @@ export class AdminService {
     );
   }
 
-  approveuser(userToken: any, adminToken: any) {
-    const body = {
-      userToken: userToken,
-      adminToken: adminToken,
+  approveuser( adminToken: any, accessToken:any, userToken: any,): Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "userToken": userToken,
+      "adminToken":adminToken
     };
-    console.log(body);
-    return this.http.put(`${environment.apiUrl}/api/admin/approveuser`, body);
+  
+    return this.http.put(`${environment.apiUrl}/api/admin/approveUser`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
   }
 
   rejectuser(userId: any, description: any) {
@@ -82,18 +89,223 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/api/admin/getallOrders`, body);
   }
 
-  getallworkflow(adminToken: any){
-    const body = {
-      adminToken: adminToken,
-        };
-        var URL = `${environment.apiUrl}/api/workflow/getallworkflow`;
-        return this.http.post<any>(URL, body).pipe(
-          map((res: any) => {
-            return res;
-          })
-        );
+  getallworkflow(adminToken: any, accessToken:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/workflow/getall`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
+
+  createworkflow(adminToken: any, accessToken:any, workflowName:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "workflowName":workflowName
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/workflow/createworkflow`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
+
+
+    getPendingUsers(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
     
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/pendingUsers`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
     }
+
+
+    getApprovedUsers(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/approvedUsers`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getRejectedUSers(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/rejectedUsers`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+    rejectUser( adminToken: any, accessToken:any, userToken: any, description:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "userToken": userToken,
+        "adminToken":adminToken,
+        "description":description
+        
+      };
+    
+      return this.http.put(`${environment.apiUrl}/api/admin/rejectUser`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+
+
+
+    getOneUserAdmin( adminToken: any, accessToken:any, userToken: any,): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "userToken": userToken,
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getOneUserAdmin`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getOrderInPCount(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getOrderInPCount`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getOrderRejPCount(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getOrderRejPCount`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getOrderComPCount(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getOrderComPCount`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getTodayOrCount(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getTodayOrCount`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+    getAllOrderCount(adminToken: any, accessToken:any): Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getAllOrderCount`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+
+    registerDepartment(adminToken: any, accessToken:any, departmentDetails:any):Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken,
+        "departmentDetails":departmentDetails
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/registerDepartment`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
+
 
 
 

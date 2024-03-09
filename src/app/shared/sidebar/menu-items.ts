@@ -108,6 +108,16 @@ export const ROUTES: RouteInfo[] = [
     expanded: false,
   },
 
+
+  {
+    path: '/det/pages/addDept',
+    title: 'Create Department',
+    icon: 'bi bi-box-seam',
+    class: '',
+    extralink: false,
+    submenu: [],
+  },
+
   // {
   //   path: '/pages/toporders',
   //   title: 'All orders',

@@ -16,7 +16,8 @@
           <thead>
             <tr>
               <th class="text-dark font-medium fs-4">Step</th>
-              <th class="text-dark font-medium fs-4">Option</th>
+              <th class="text-dark font-medium fs-4">Step Name</th> 
+              <th class="text-dark font-medium fs-4">Department Name</th>
               <th class="text-dark font-medium fs-4">Action</th>
             </tr>
           </thead>
@@ -30,12 +31,21 @@
                 </select>
               </td>
               <td>
-                <select  class="form-control form-select" [(ngModel)]="row.option" name="option{{i}}">
+                <select  class="form-control form-select" [(ngModel)]="row.stepName" name="stepName{{i}}">
+                  <option value="Plaster">Plastering</option>
+                  <option value="Designer">CAD Designing</option>
+                  <option value="Ceramic">Ceramic  </option>
+                </select>
+              </td>
+
+              <td>
+                <select  class="form-control form-select" [(ngModel)]="row.departmentName" name="departmentName{{i}}">
                   <option value="Plaster">Plaster team</option>
                   <option value="Designer">Designer team</option>
                   <option value="Ceramic">Ceramic team </option>
                 </select>
               </td>
+
               <td>
                 <button (click)="removeRow(i)">Remove</button>
               </td>
