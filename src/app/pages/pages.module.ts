@@ -15,6 +15,7 @@ import { CreateNewUserComponent } from './create-new-user/create-new-user.compon
 import { WorkflowsComponent } from './workflows/workflows.component';
 import { WorkflowDetailComponent } from './workflow-detail/workflow-detail.component';
 import { DepartmentComponent } from './department/department.component';
+import { WorkflowStepComponent } from './workflow-step/workflow-step.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,12 @@ const routes: Routes = [
         canActivate: [authGuard],
       },
 
+      {
+        path: 'workflowstep/:id',
+        component:WorkflowStepComponent,
+        canActivate: [authGuard],
+      },
+
 
       
     ],
@@ -90,6 +97,7 @@ const routes: Routes = [
     WorkflowsComponent,
     WorkflowDetailComponent,
     DepartmentComponent,
+    WorkflowStepComponent,
 
    
   ],

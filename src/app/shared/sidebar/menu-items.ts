@@ -10,14 +10,6 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  // {
-  //   path: '/auth/login',
-  //   title: 'Login',
-  //   icon: 'bi bi-box-arrow-in-right',
-  //   class: 'disabled',
-  //   extralink: false,
-  //   submenu: [],
-  // },
   {
     path: '/det/pages/newuser',
     title: 'Add users',
@@ -85,6 +77,15 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
 
+      {
+        path: '/det/pages/addDept',
+        title: 'Create Department',
+        icon: 'bi bi-box-seam',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
       // {
       //   path: '/det/userapproval/approvedusers',
       //   title: 'Create Departments',
@@ -109,14 +110,7 @@ export const ROUTES: RouteInfo[] = [
   },
 
 
-  {
-    path: '/det/pages/addDept',
-    title: 'Create Department',
-    icon: 'bi bi-box-seam',
-    class: '',
-    extralink: false,
-    submenu: [],
-  },
+
 
   // {
   //   path: '/pages/toporders',
