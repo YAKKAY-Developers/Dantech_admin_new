@@ -104,6 +104,22 @@ export class AdminService {
       }));
   }
 
+
+  getAllDepartments(adminToken: any, accessToken:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/admin/getAllDepartments`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
+
   createworkflow(adminToken: any, accessToken:any, workflowName:any):Observable<any> {
     let headers = new HttpHeaders({
       'x-access-token': `${accessToken}`
