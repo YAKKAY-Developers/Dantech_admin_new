@@ -51,12 +51,12 @@ export class AllDepartmentComponent {
 
 
     
-   // Retrieve token from route parameters
-   this.route.params.subscribe(params => {
-    this.workflowToken = params['id'];
-    // Now you can use this.workflowToken in your component logic
-    console.log("workflowToken", this.workflowToken);
-  });
+  //  // Retrieve token from route parameters
+  //  this.route.params.subscribe(params => {
+  //   this.workflowToken = params['id'];
+  //   // Now you can use this.workflowToken in your component logic
+  //   console.log("workflowToken", this.workflowToken);
+  // });
 
      
     

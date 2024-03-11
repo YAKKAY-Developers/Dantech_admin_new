@@ -1,1 +1,81 @@
-<p>department-detail works!</p>
+<div class="container">
+    <div class="container ">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <h4 class="card-title">Asignees in </h4>
+                    <h5 class="card-subtitle">Overview of assignee list</h5>
+                    <div class="row">
+                        <div class="col-10">
+                            <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
+                                (ngModelChange)="filterData()" autocomplete="off" placeholder="Find your Assignees">
+                        </div>
+                        <div class="col-2 align-self-center">
+                            <button class="login-button" data-bs-toggle="modal" data-bs-target="#modalid">Add
+                            </button>
+                        </div>
+                   <div class="table-responsive">   
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sortColumn('assigneeToken')" class="text-dark font-medium fs-4">
+                                            Assignee ID
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('assigneeName')" class="text-dark font-medium fs-4">
+                                            AssigneeName name
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let ts of filteredData'>
+                                        <td class="fs-4">
+                                            {{ts.assigneeToken.slice(-3) }}
+                                        </td>
+                                        <td>
+                                            {{ts.assigneeName}}
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr *ngIf="!filteredData">
+                                        <td colspan="3" style="text-align: center;"> No Assignees..! </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalid">
+    <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Assignee Name details</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                <div class="modal-body">
+
+                    <input type="text" formControlName="assigneeName" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['assigneeName'].errors }" placeholder="assigneeName" />
+                    <div *ngIf=" submitted && f['assigneeName'].errors" class="invalid-feedback">
+                        <div *ngIf="f['assigneeName'].errors && f['assigneeName'].errors['required']">assigneeName name is
+                            required
+                        </div>
+                        <div *ngIf="f['assigneeName'].errors && f['assigneeName'].errors['minlength']">Enter valid name
+                        </div>
+                    </div><br>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" data-bs-dismiss="modal">Add
+                        Assignee</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

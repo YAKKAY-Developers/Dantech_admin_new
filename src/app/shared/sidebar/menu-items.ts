@@ -119,6 +119,15 @@ export const ROUTES: RouteInfo[] = [
         submenu: [],
       },
 
+      {
+        path: '/det/pages/allDept',
+        title: 'All Department',
+        icon: 'bi bi-box-seam',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
     
       
     ],

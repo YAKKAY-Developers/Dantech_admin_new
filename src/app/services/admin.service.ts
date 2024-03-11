@@ -119,6 +119,23 @@ export class AdminService {
         return res;
       }));
   }
+ 
+ 
+  getOrderDetail(adminToken: any, accessToken:any, orderToken:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "orderToken":orderToken
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/admin/getOrderDeatilsAdmin`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
 
 
   getAllDepartments(adminToken: any, accessToken:any):Observable<any> {
@@ -152,7 +169,40 @@ export class AdminService {
       }));
   }
 
+  createAddMemebers(adminToken: any, accessToken:any, departmentToken:any, assigneeName:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "departmentToken":departmentToken,
+      "assigneeName":assigneeName
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/admin/createAddMemebers`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
 
+
+  getAllDepartmentDetails(adminToken: any, accessToken:any, departmentToken:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "departmentToken":departmentToken,
+     
+    };
+  
+    return this.http.post(`${environment.apiUrl}/api/admin/getAllDepartmentDetails`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
     getPendingUsers(adminToken: any, accessToken:any): Observable<any> {
       let headers = new HttpHeaders({
         'x-access-token': `${accessToken}`
