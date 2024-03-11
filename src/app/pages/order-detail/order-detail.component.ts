@@ -298,7 +298,9 @@ import { formatDate } from '@angular/common';
 export class OrderDetailComponent {
 
   orderdatasubscribtion: Subscription;
+  workflowsubscribtion : Subscription;
   order_details: any;
+  workflowResult:any;
   order_data: any;
   orders_length = false;
   filteredData: any;
@@ -312,8 +314,11 @@ export class OrderDetailComponent {
   defaultDate: string;
   UserAddInfo: any;
   userInfo: any;
+  selectedWorkflowToken: string | null = null;
 
-  
+  form: FormGroup;
+  formBuilder: any;
+
   constructor(
     public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -358,6 +363,9 @@ export class OrderDetailComponent {
 
     this.adminToken = adminToken;
     this.accessToken = accessToken;
+
+
+    
  
     // Retrieve token from route parameters
     this.route.params.subscribe(params => {
@@ -365,6 +373,22 @@ export class OrderDetailComponent {
       console.log("", this.orderToken);
     });
       
+
+     // Initialize the form with empty values
+    //  this.form = this.formBuilder.group({
+     
+    //    firstName: [
+    //       '',
+    //       [
+    //         Validators.required,
+    //         Validators.pattern(/^([A-z]+\s*)+$/),
+    //         Validators.minLength(3),
+    //       ],
+    //     ],
+
+
+    //  });
+    
 
     this.orderdatasubscribtion = this.adminservice
     .getOrderDetail(this.adminToken, this.accessToken, this.orderToken)
@@ -385,6 +409,22 @@ export class OrderDetailComponent {
         console.log(error);
       }
     );
+
+
+    this.workflowsubscribtion = this.adminservice
+    .getallworkflow(this.adminToken, this.accessToken)
+    .subscribe(
+      (res: any) => {
+     this.workflowResult = res.getallworkflow;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+
+
+
+
 
 
   }
@@ -421,31 +461,48 @@ export class OrderDetailComponent {
   }
 
 
+  switchToHistoryTab() {
+    console.log(this.selectedWorkflowToken)
+    if (this.adminToken && this.selectedWorkflowToken) {
+   
+    
+      this.adminservice.startWorkflow(this.adminToken, this.accessToken, this.selectedWorkflowToken, this.orderToken)
+        .subscribe(
+          (response: any) => {
+            // Handle response if needed
+            console.log('Order started successfully', response);
+            // After starting the order, switch to the history tab
+            const historyTab = document.getElementById('history-tab');
+            if (historyTab) {
+              historyTab.click(); // Programmatically trigger a click on the "History" tab
+            }
+          },
+          (error: any) => {
+            // Handle error if needed
+            console.error('Error starting order', error);
+          }
+        );
+    } else {
+
+      console.error('Admin token or selected workflow token is missing');
+    }
+  }
+  
+
+
+
     formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const day = ('0' + date.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
-  //   addSubtask(task: string) {
-//     // Set the selected task
-//     this.selectedTask = task;
-//     // Create an array of subtasks for the given task if it doesn't exist
-//     if (!this.subtasks[task]) {
-//       this.subtasks[task] = [];
-//     }
-//   }
+  
+
+  onSubmit() {
+
+    }
+  }
 
 
-
-//   submitSubtask(task: string) {
-//     if (this.newSubtask.trim() !== '') {
-//       // Push the subtask to the array associated with the given task
-//       this.subtasks[task].push(this.newSubtask);
-//       this.newSubtask = ''; // Clear the input field
-//     }
-//   }
-
-
-}
 

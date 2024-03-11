@@ -422,6 +422,25 @@ export class AdminService {
     }
 
 
+    startWorkflow(adminToken: any, accessToken:any, workflowToken:any,orderToken:any):Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken,
+        "workflowToken":workflowToken,
+        "orderToken":orderToken
+       
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/startWorkflow`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
+
+
 
 
 
