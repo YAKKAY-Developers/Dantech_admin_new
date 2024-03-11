@@ -1,1 +1,55 @@
-<p>all-department works!</p>
+<div class="container">
+    <div class="container ">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <!-- title -->
+                    <h4 class="card-title">All Departments</h4>
+                    <h5 class="card-subtitle"> Dpartment Details</h5>
+                    <div class="row">
+                      
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sortColumn('departmentToken')" class="text-dark font-medium fs-4">
+                                            Department ID
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('fullName')" class="text-dark font-medium fs-4">
+                                            Department Name name
+                                            &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                        <th (click)="sortColumn('email')" class="text-dark font-medium fs-4">
+                                          Email &nbsp; <i class="bi bi-arrow-down-up"></i></th>
+                                            <th  class="text-dark font-medium fs-4">
+                                                Actions &nbsp; </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let ts of filteredData'>
+                                        <td class="fs-4">
+                                            {{ts.departmentToken.slice(-3)}} 
+                                        </td>
+                                        <td>
+                                            {{ts.fullName}}
+                                        </td>
+                                        <td>
+                                            {{ts.email}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-warning btn-sm"><i
+                                                class="bi bi-pencil" [routerLink]="['/det/pages/departmentDetail/',ts.departmentToken]"></i></button>
+                                        
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="!filteredData">
+                                        <td colspan="3" style="text-align: center;"> No Departments..! </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
