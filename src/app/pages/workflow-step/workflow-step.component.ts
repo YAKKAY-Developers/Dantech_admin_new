@@ -57,25 +57,45 @@ this.accessToken = accessToken;
     return this.form.controls;
   }
 
-  addRow(): void {
+  // addRow(): void {
 
 
      
   
+  //   // Add a new row to the form and rows array
+  //   const stepId = this.rows.length;
+  //   this.rows.push({
+  //     stepId: stepId + 0,
+  //     stepName: '',
+  //     stepDuration: '',
+  //     isPrimary: false // Initialize isPrimary as false
+  //   });
+
+  //   // Initialize form controls for the new row
+  //   this.form.addControl(`stepName${stepId}`, this.formBuilder.control('', [Validators.required, Validators.minLength(3)]));
+  //   this.form.addControl(`stepDuration${stepId}`, this.formBuilder.control(''));
+  //   this.form.addControl(`isPrimary${stepId}`, this.formBuilder.control(false));
+  // }
+
+  addRow(): void {
     // Add a new row to the form and rows array
     const stepId = this.rows.length;
+    const stepNumber = 'Step ' + (stepId + 1); // Generate step number for the new row
     this.rows.push({
-      stepId: stepId + 0,
-      stepName: '',
-      stepDuration: '',
-      isPrimary: false // Initialize isPrimary as false
+        stepId: stepId + 0,
+        stepNumber: stepNumber,
+        stepName: '',
+        stepDuration: '',
+        isPrimary: false // Initialize isPrimary as false
     });
 
     // Initialize form controls for the new row
     this.form.addControl(`stepName${stepId}`, this.formBuilder.control('', [Validators.required, Validators.minLength(3)]));
+    this.form.addControl(`stepNumber${stepId}`, this.formBuilder.control(stepNumber)); // Set stepNumber in form control
     this.form.addControl(`stepDuration${stepId}`, this.formBuilder.control(''));
     this.form.addControl(`isPrimary${stepId}`, this.formBuilder.control(false));
-  }
+}
+
 
   removeRow(index: number): void {
     // Remove the row from the form and rows array
@@ -93,8 +113,9 @@ this.accessToken = accessToken;
 
 
 
-    const formData = this.rows.map(row => ({
+    const formData = this.rows.map((row, index) => ({
       // stepId: row.stepId + 1,
+      stepNumber: 'Step ' + (index + 1), // Add stepNumber here
       stepName: this.form.get(`stepName${row.stepId}`)?.value,
       stepDuration: this.form.get(`stepDuration${row.stepId}`)?.value,
       isPrimary: this.form.get(`isPrimary${row.stepId}`)?.value ? "1" : "0" // Convert boolean to "1" or "0"
