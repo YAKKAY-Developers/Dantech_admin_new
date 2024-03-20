@@ -24,6 +24,9 @@ export class WorkflowStepComponent implements OnInit {
   result: any;
   workflowName: any;
   stepresult: any;
+  filteredData: any;
+  sortcolumn: string = '';
+  sortDirection: string = 'asc';
 
   constructor(private formBuilder: FormBuilder,  
     private route: ActivatedRoute,
@@ -51,6 +54,7 @@ this.accessToken = accessToken;
 
   this.adminservice.getAllSteps(this.adminToken, this.accessToken, this.workflowToken).subscribe(res=>{
     this.stepresult = res.getSteps;
+    this.filteredData = this.stepresult ;
     this.workflowName = res.worflowName;
     console.log(this.stepresult)
   })
@@ -164,4 +168,41 @@ this.accessToken = accessToken;
     this.form.reset();
     this.rows = [];
   }
+
+
+  sortColumn(column: string) {
+    console.log('Sorting column:', column);
+  
+    // Check if the column is already sorted
+    if (this.sortcolumn === column) {
+      // If the same column is clicked again, toggle the sorting order
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // If a different column is clicked, set the sorting column and direction
+      this.sortcolumn = column;
+      this.sortDirection = 'asc'; // Default to ascending order
+    }
+  
+    // Sort the filtered data based on the chosen column and direction
+    this.filteredData.sort((a, b) => {
+      const valueA = a[column];
+      const valueB = b[column];
+  
+      console.log('value A:', valueA);
+      console.log('value B:', valueB);
+  
+      if (column === 'isPrimary') {
+        // For boolean fields, compare using the default sorting order
+        return this.sortDirection === 'asc' ? (valueA ? -1 : 1) : valueA ? 1 : -1;
+      } else {
+        // For other fields, compare using localeCompare
+        if (this.sortDirection === 'asc') {
+          return valueA.localeCompare(valueB);
+        } else {
+          return valueB.localeCompare(valueA);
+        }
+      }
+    });
+  }
+  
 }
