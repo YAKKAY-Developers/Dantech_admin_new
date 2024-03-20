@@ -318,6 +318,8 @@ export class OrderDetailComponent {
 
   form: FormGroup;
   formBuilder: any;
+  daysUntilDelivery: number;
+  overdue: boolean;
 
   constructor(
     public router: Router,
@@ -398,12 +400,19 @@ export class OrderDetailComponent {
         this.filteredData = this.order_details;
         this.userInfo = res.userDetails;
         this.UserAddInfo = res.userInfoDetails;
-        // if (this.order_details.getallOrders.length > 0) {
-        //   this.orders_length = true;
-        // }
-        // this.order_data = this.order_details.getallOrders;
-        // this.filteredData = this.order_data;
-        // console.log(this.order_data);
+       
+        const requiredDate = new Date(this.order_details.requiredDate);
+        const currentDate = new Date();
+
+        // Calculate the difference in days
+        const differenceInTime = requiredDate.getTime() - currentDate.getTime();
+        this.daysUntilDelivery = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+
+        // Check if overdue
+        this.overdue = currentDate.getTime() > requiredDate.getTime();
+        console.log("Difference ", differenceInTime);
+        console.log("Days left", this.daysUntilDelivery);
+        console.log("Overdue", this.overdue);
       },
       (error: any) => {
         console.log(error);

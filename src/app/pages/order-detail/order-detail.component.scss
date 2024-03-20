@@ -169,3 +169,47 @@
 
 
 
+//Progress circular 
+
+//Circuar progress bar
+.days-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-container {
+  position: relative;
+  width: 12rem; /* Adjust as needed */
+  height: 12rem; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div[role="progressbar"] {
+  --size: 10rem; /* Adjust as needed */
+  --fg: #00AF89;
+  --bg: #d8f7dc;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: 
+      radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+  position: relative;
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
