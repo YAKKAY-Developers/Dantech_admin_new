@@ -18,7 +18,7 @@ import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { BlankComponent } from './layouts/blank/blank.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,18 @@ import { BlankComponent } from './layouts/blank/blank.component';
     HttpClientModule,
     NgbModule,
     RouterModule.forRoot(Approutes, { useHash: false}),
+    ToastrModule.forRoot({
+   
+
+      // toastComponent: CustomToastComponent,
+timeOut: 3000, // Time to close the toaster (in milliseconds)
+      positionClass: 'toast-top-right', // Toast position
+      closeButton: false, // Show close button
+      progressBar: true, // Show progress bar
+      // Apply the custom style class to toastr container
+      toastClass: 'custom-toast',
+
+    }),
     FullComponent,
     BlankComponent,
     NavigationComponent,

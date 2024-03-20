@@ -121,21 +121,21 @@ export class AdminService {
   }
  
  
-  getOrderDetail(adminToken: any, accessToken:any, orderToken:any):Observable<any> {
-    let headers = new HttpHeaders({
-      'x-access-token': `${accessToken}`
-    });
-  
-    let body = {
-      "adminToken":adminToken,
-      "orderToken":orderToken
-    };
-  
-    return this.http.post(`${environment.apiUrl}/api/admin/getOrderDeatilsAdmin`, body, { headers })
-      .pipe(map((res: any) => {
-        return res;
-      }));
-  }
+    getOrderDetail(adminToken: any, accessToken:any, orderToken:any):Observable<any> {
+      let headers = new HttpHeaders({
+        'x-access-token': `${accessToken}`
+      });
+    
+      let body = {
+        "adminToken":adminToken,
+        "orderToken":orderToken
+      };
+    
+      return this.http.post(`${environment.apiUrl}/api/admin/getOrderDeatilsAdmin`, body, { headers })
+        .pipe(map((res: any) => {
+          return res;
+        }));
+    }
 
 
   getAllDepartments(adminToken: any, accessToken:any):Observable<any> {

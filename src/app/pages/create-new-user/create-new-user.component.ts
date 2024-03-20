@@ -8,6 +8,8 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ToasterService } from 'src/app/services/toaster.service';
+
 
 @Component({
   selector: 'app-create-new-user',
@@ -33,23 +35,12 @@ export class CreateNewUserComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private toasterService: ToasterService,
   ) {}
 
   ngOnInit() {
-    // this.form = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.pattern(
-    //         /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-    //       ),
-    //       Validators.minLength(8),
-    //     ],
-    //   ],
-    // });
+  
 
     this.register = this.formBuilder.group(
       {
@@ -135,17 +126,22 @@ export class CreateNewUserComponent {
 
         next: (res) => {
           this.result = res;
-          window.confirm(this.result.message);
+          const messageType = 'success';
+          const message = this.result.message;
+          const title = 'User added Successfylly';
+          this.toasterService.showToast(message, title, messageType);
           this.router.navigate(['det/userapproval/pendingusers']);
-          // get return url from query parameters or default to home page
-          // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          // this.router.navigateByUrl(returnUrl);
+       
         },
         error: (error) => {
           // this.error_message = error.error.message;
           console.log(error);
 
-          this.RegisterError = true;
+          const messageType = 'warning' ;
+          const message = error;
+          const title = 'Login';
+    
+        this.toasterService.showToast(message, title, messageType);
         },
       });
     

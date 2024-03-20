@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 // import { UserService } from 'src/app/services/user.service';
 // import { OrderService } from 'src/app/services/order.service';
 import { AdminService } from 'src/app/services/admin.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 import { first } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -75,7 +76,8 @@ myWorkflow:any[]=[];
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private authservice: AuthService,
-    private adminservice : AdminService
+    private adminservice : AdminService,
+    private toasterService :ToasterService
   
   ) {}
 
@@ -126,7 +128,12 @@ myWorkflow:any[]=[];
     this.adminservice.createworkflow(this.adminToken, this.accessToken, this.form.value).subscribe(res=>{
       this.myWorkflow = res.getallworkflow;
       this.filteredData = this.myWorkflow ;
-      console.log(this.myWorkflow)
+      const messageType = 'success';
+      const message = res.message;
+      const title = 'Workflow creation Success';
+      this.toasterService.showToast("Workflow Created Succesfully", title, messageType);
+      window.location.reload();
+    
       window.location.reload();
     })
 

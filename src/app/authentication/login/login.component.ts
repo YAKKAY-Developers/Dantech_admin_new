@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private toasterService: ToasterService,
   ) {}
 
   ngOnInit() {
@@ -78,15 +80,17 @@ export class LoginComponent {
       .subscribe({
         next: (res) => {
           this.result = res;
-          // window.confirm(this.result.message);
-          // get return url from query parameters or default to home page
-          // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          // this.router.navigateByUrl(returnUrl);
+          
           this.router.navigate(['/det/dashboard']);
         },
         error: (error) => {
           this.loading = false;
           this.loginError = true;
+          const messageType = 'warning' ;
+          const message = error;
+          const title = 'Login';
+    
+        this.toasterService.showToast(message, title, messageType);
         },
 
         // {
