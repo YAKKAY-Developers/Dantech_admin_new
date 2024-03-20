@@ -10,14 +10,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
-  {
-    path: '/det/pages/newuser',
-    title: 'Add users',
-    icon: 'bi bi-person-add',
-    class: '',
-    extralink: false,
-    submenu: [],
-  },
+
   {
     path: '',
     title: 'Users',
@@ -25,6 +18,14 @@ export const ROUTES: RouteInfo[] = [
     class: 'd-none',
     extralink: false,
     submenu: [
+      {
+        path: '/det/pages/newuser',
+        title: 'Add users',
+        icon: 'bi bi-person-add',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
       {
         path: '/det/userapproval/approvedusers',
         title: 'Approved users',

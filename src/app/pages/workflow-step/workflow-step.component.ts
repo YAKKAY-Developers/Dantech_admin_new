@@ -17,10 +17,13 @@ export class WorkflowStepComponent implements OnInit {
   activatedRoute: any;
   workflowToken:any;
   loading: boolean;
+  length:any;
 
   adminToken:any;
   accessToken:any;
   result: any;
+  workflowName: any;
+  stepresult: any;
 
   constructor(private formBuilder: FormBuilder,  
     private route: ActivatedRoute,
@@ -46,7 +49,12 @@ this.accessToken = accessToken;
   });
 
 
-  
+  this.adminservice.getAllSteps(this.adminToken, this.accessToken, this.workflowToken).subscribe(res=>{
+    this.stepresult = res.getSteps;
+    this.workflowName = res.worflowName;
+    console.log(this.stepresult)
+  })
+
 
      
     // Initialize the form with empty values
@@ -142,6 +150,8 @@ this.accessToken = accessToken;
 
       },
     });
+
+
 
 
 

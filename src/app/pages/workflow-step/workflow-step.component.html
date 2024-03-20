@@ -1,3 +1,4 @@
+<ng-container *ngIf="stepresult.length == 0 " >
 <div class="container">
     <div class="container">
       <div class="row">
@@ -57,4 +58,21 @@
       </div>
     </div>
   </div>
+</ng-container>
+
+
+<ng-container *ngIf="stepresult.length > 0 ">
+  <div class="container">
+    <div class="container">
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+
+            Step for this workflow Already Exists!!
   
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+</ng-container>
