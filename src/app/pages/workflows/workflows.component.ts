@@ -129,13 +129,15 @@ myWorkflow:any[]=[];
       this.myWorkflow = res.getallworkflow;
       this.filteredData = this.myWorkflow ;
       const messageType = 'success';
-      const message = res.message;
       const title = 'Workflow creation Success';
       this.toasterService.showToast("Workflow Created Succesfully", title, messageType);
       window.location.reload();
+  
+    },
     
-      window.location.reload();
-    })
+  
+    
+    )
 
 
 
