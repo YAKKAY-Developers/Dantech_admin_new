@@ -20,6 +20,7 @@ import { EditWorkflowstepsComponent } from './edit-workflowsteps/edit-workflowst
 import { AllDepartmentComponent } from './all-department/all-department.component';
 import { DepartmentDetailComponent } from './department-detail/department-detail.component';
 import { OrderFormComponent } from './order-form/order-form.component';
+import { CompletedOrderComponent } from './completed-order/completed-order.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'completedorder',
+        component: CompletedOrderComponent,
         canActivate: [authGuard],
       },
       {
@@ -135,6 +141,7 @@ const routes: Routes = [
     AllDepartmentComponent,
     DepartmentDetailComponent,
     OrderFormComponent,
+    CompletedOrderComponent,
   
    
   ],

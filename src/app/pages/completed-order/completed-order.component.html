@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor='let ts of filteredData'>
-                        <ng-container *ngIf="ts.orderStatusId === 1 || ts.orderStatusId === 2 || ts.orderStatusId === 3">
+                        <ng-container *ngIf="ts.orderStatusId === 4">
                         <td class="fs-4">
                             {{ts.workOrderNumber}}
                             <!-- ...{{ ts.orderid.slice(-3) }} -->

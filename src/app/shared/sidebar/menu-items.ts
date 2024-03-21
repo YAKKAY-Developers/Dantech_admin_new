@@ -53,14 +53,35 @@ export const ROUTES: RouteInfo[] = [
     ],
     expanded: false,
   },
+
   {
-    path: '/det/pages/orders',
+    path: '',
     title: 'Orders',
-    icon: 'bi bi-box-seam',
-    class: '',
+    icon: 'bi bi-bag-fill',
+    class: 'd-none',  
     extralink: false,
-    submenu: [],
+    submenu: [
+      {
+        path: '/det/pages/orders',
+        title: ' Pending Orders',
+        icon: 'bi bi-box-seam',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+
+      {
+        path: '/det/pages/completedorder',
+        title: 'Completed Orders',
+        icon: 'bi bi-bag-check',
+        class: '',
+        extralink: false,
+        submenu: [],
+      },
+    ],
+    expanded: false,
   },
+
 
   {
     path: '',

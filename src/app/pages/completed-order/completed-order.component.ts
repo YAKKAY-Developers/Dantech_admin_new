@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss'],
+  selector: 'app-completed-order',
+  templateUrl: './completed-order.component.html',
+  styleUrls: ['./completed-order.component.scss']
 })
-export class OrdersComponent {
+export class CompletedOrderComponent {
   orderdatasubscribtion: Subscription;
   order_details: any;
   order_data: any;

@@ -45,8 +45,8 @@
  border-radius: 0.5rem;
 }
 .tracking-item .tracking-content span {
- display: block;
- color: #767676;
+ display: unset;
+ color: #ffffff;
  font-size: 13px;
 }
 .tracking-item .tracking-icon {
@@ -101,10 +101,10 @@
  font-size: 1.1rem;
  color: #d6d6d6;
 }
-//   .tracking-item-pending .tracking-content {
-//    font-weight: 600;
-//    font-size: 17px;
-//   }
+  .tracking-item-pending .tracking-content {
+   font-weight: 600;
+   font-size: 17px;
+  }
 
 .tracking-item .tracking-icon.status-current {
  width: 1.9rem;
@@ -156,7 +156,7 @@
 }
 
 .tracking-item .tracking-content {
-//  font-weight: 600;
+ font-weight: 600;
  font-size: 17px;
 }
 
