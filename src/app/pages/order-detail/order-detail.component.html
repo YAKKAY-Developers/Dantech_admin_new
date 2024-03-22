@@ -1,27 +1,34 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+  <ng-container>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab"
       aria-controls="order" aria-selected="true">Order Summary</button>
   </li>
+</ng-container>
+
+
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab"
       aria-controls="details" aria-selected="false">Order Details</button>
   </li>
+
+   
 
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="assignment-tab" data-bs-toggle="tab" data-bs-target="#assignment" type="button"
       role="tab" aria-controls="assignment" aria-selected="false">Order Initiate  </button>
   </li>
 
-  <!-- <li class="nav-item" role="presentation">
-    <button class="nav-link" id="taskassign-tab" data-bs-toggle="tab" data-bs-target="#taskassign" type="button"
-      role="tab" aria-controls="tasktaskassign" aria-selected="false">Task Assignment</button>
-  </li> -->
+ 
+  
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab"
       aria-controls="history" aria-selected="false">History</button>
   </li>
 
+
+ 
   <li class="nav-item" role="presentation">
     <button class="nav-link " id="form-tab" data-bs-toggle="tab" data-bs-target="#form" type="button" role="tab"
         aria-controls="form" aria-selected="false">Order FOrm</button>
@@ -472,7 +479,7 @@
                     class="img-responsive" alt="order-placed" />
                 </div>
                 <div class="tracking-content">
-                  <!-- Display stepName and corresponding status badge based on stepName -->
+                 
                   {{ detail.stepName }}<br>
                   <ng-container [ngSwitch]="detail.workflowStatusId">
                       <span class="badge rounded-pill bg-secondary" *ngSwitchCase="1">Not Started</span>
