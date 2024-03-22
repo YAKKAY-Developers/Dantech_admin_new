@@ -119,6 +119,27 @@ export class AdminService {
         return res;
       }));
   }
+
+
+  updateStep(adminToken: any, accessToken:any, workflowToken:any, stepCode :any, stepName: any,  stepDuration:any, isPrimary:any):Observable<any> {
+    let headers = new HttpHeaders({
+      'x-access-token': `${accessToken}`
+    });
+  
+    let body = {
+      "adminToken":adminToken,
+      "workflowToken":workflowToken,
+      "stepCode":stepCode,
+      "stepDuration":stepDuration,
+      "isPrimary":isPrimary,
+      "stepName":stepName
+    };
+  
+    return this.http.put(`${environment.apiUrl}/api/workflow/updateStep`, body, { headers })
+      .pipe(map((res: any) => {
+        return res;
+      }));
+  }
  
  
     getOrderDetail(adminToken: any, accessToken:any, orderToken:any):Observable<any> {
@@ -370,20 +391,20 @@ export class AdminService {
     }
 
 
-    getAllOrderCount(adminToken: any, accessToken:any): Observable<any> {
-      let headers = new HttpHeaders({
-        'x-access-token': `${accessToken}`
-      });
-    
-      let body = {
-        "adminToken":adminToken
-      };
-    
-      return this.http.post(`${environment.apiUrl}/api/admin/getAllOrderCount`, body, { headers })
-        .pipe(map((res: any) => {
-          return res;
-        }));
-    }
+      getAllOrderCount(adminToken: any, accessToken:any): Observable<any> {
+        let headers = new HttpHeaders({
+          'x-access-token': `${accessToken}`
+        });
+      
+        let body = {
+          "adminToken":adminToken
+        };
+      
+        return this.http.post(`${environment.apiUrl}/api/admin/getAllOrderCount`, body, { headers })
+          .pipe(map((res: any) => {
+            return res;
+          }));
+      }
 
 
 

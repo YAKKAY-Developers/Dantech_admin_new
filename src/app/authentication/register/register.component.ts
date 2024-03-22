@@ -125,7 +125,9 @@ export class RegisterComponent { form: FormGroup;
           next: () => {
               // this.alertService.success('Registration successful', { keepAfterRouteChange: true });
               // this.router.navigate(['../pages-login'], { relativeTo: this.route });
-              window.location.reload();
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000); 
           },
           error: error => {
             this.RegisterError = true;

@@ -106,7 +106,9 @@ export class DepartmentDetailComponent {
       .pipe(first())
       .subscribe({
         next: () => {
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000); 
         },
         error: (error) => {
           this.loading = false;

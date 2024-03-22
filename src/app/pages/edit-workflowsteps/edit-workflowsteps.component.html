@@ -34,29 +34,64 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor='let ts of filteredData'>
+                                    <tr *ngFor="let ts of filteredData; let i = index">
                                         <td class="fs-4">
-                                            {{ts.stepToken.slice(-3)}} 
+                                            {{ ts.stepToken.slice(-3) }} 
                                         </td>
-                                        <td>
-                                            {{ts.stepName}}
+                                        <td >
+                                            <ng-container *ngIf="!ts.isEdit">
+                                            {{ ts.stepName }}
+                                            </ng-container>
+                                            <ng-container *ngIf="ts.isEdit">
+                                                <input type="text" [(ngModel)]="ts.stepName" class="form-control">
+                                            </ng-container>
                                         </td>
-                                        <td>
-                                            {{ts.stepDuration}}
+                                        <td  >
+                                            <ng-container *ngIf="!ts.isEdit">
+                                            {{ ts.stepDuration }}
+                                        </ng-container>
+                                        <ng-container *ngIf="ts.isEdit">
+                                            <input type="text" [(ngModel)]="ts.stepDuration" class="form-control">
+                                        </ng-container>
                                         </td>
-                                        <td>
-                                            {{ts.isPrimary}}
+                                        <td >
+                                            <ng-container *ngIf="!ts.isEdit">
+                                            {{ ts.isPrimary }}
+                                        </ng-container>
+                                        <ng-container *ngIf="ts.isEdit">
+                                            <input type="text" [(ngModel)]="ts.isPrimary" class="form-control">
+                                        </ng-container>
                                         </td>
-                                        <td>
-                                            <button class="btn btn-outline-warning btn-sm"><i
-                                                class="bi bi-pencil" ></i></button>
-                                        
+                                        <td >
+                                            <ng-container *ngIf="!ts.isEdit">
+                                            <button class="btn btn-outline-warning btn-sm" (click)="onEdit(ts)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>&nbsp;
+                                            <!-- <button class="btn btn-outline-danger btn-sm" (click)="onDelete(ts)">
+                                                <i class="bi bi-trash"></i>
+                                            </button> -->
+                                        </ng-container>
+                                      
+
+                                        <ng-container *ngIf="ts.isEdit">
+                                            <div class="d-flex">
+                                                <button class="btn btn-outline-success btn-sm me-2"
+                                                (click)="onSave(ts)">
+                                                <i class="bi bi-save"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger btn-sm"
+                                                        (click)="onCancel(ts)">
+                                                        <i class="bi bi-x"></i> 
+                                                    </button>
+                                        </div>
+                                        </ng-container>
                                         </td>
                                     </tr>
-                                    <tr *ngIf="!filteredData">
-                                        <td colspan="3" style="text-align: center;"> No Steps..! </td>
+                                    <tr *ngIf="filteredData.length === 0">
+                                        <td colspan="5" style="text-align: center;"> No Steps..! </td>
                                     </tr>
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>

@@ -131,7 +131,9 @@ myWorkflow:any[]=[];
       const messageType = 'success';
       const title = 'Workflow creation Success';
       this.toasterService.showToast("Workflow Created Succesfully", title, messageType);
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000); 
   
     },
     
