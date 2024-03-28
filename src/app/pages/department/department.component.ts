@@ -120,7 +120,7 @@ this.accessToken = accessToken;
         next: (res) => {
           this.result = res;
           window.confirm(this.result.message);
-          this.router.navigate(['det/userapproval/pendingusers']);
+          this.router.navigate(['det/userapproval/allDept']);
         
         },
         error: (error) => {
