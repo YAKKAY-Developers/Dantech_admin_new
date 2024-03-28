@@ -37,11 +37,17 @@
             <form [formGroup]="register">
                 <h1>Create Admin</h1>
 
-                <input type="text" formControlName="name" class="form-control"
-                    [ngClass]="{ 'is-invalid': reg_submitted && r['name'].errors }" placeholder="Admin name" />
-                <div *ngIf="reg_submitted&& r['name'].errors" class="invalid-feedback">
-                    <div *ngIf="r['name'].errors && r['name'].errors['required']">Name is required</div>
+                <input type="text" formControlName="firstName" class="form-control"
+                    [ngClass]="{ 'is-invalid': reg_submitted && r['firstName'].errors }" placeholder="Admin First name" />
+                <div *ngIf="reg_submitted&& r['firstName'].errors" class="invalid-feedback">
+                    <div *ngIf="r['firstName'].errors && r['firstName'].errors['required']">First Name is required</div>
                 </div>
+
+                <input type="text" formControlName="lastName" class="form-control"
+                [ngClass]="{ 'is-invalid': reg_submitted && r['lastName'].errors }" placeholder="Admin Last name" />
+            <div *ngIf="reg_submitted&& r['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="r['lastName'].errors && r['lastName'].errors['required']">Last Name is required</div>
+            </div>
 
                 <input type="email" formControlName="email" class="form-control"
                     [ngClass]="{ 'is-invalid': reg_submitted && r['email'].errors }" placeholder="Email" />

@@ -76,6 +76,7 @@ export class AuthService {
 
 
   adminregister(user: User) {
+    console.log(user);
     return this.http.post(`${environment.apiUrl}/api/admin/register`, user);
   }
 
