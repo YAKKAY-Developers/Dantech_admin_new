@@ -143,7 +143,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AdminService } from 'src/app/services/admin.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 
 @Component({
@@ -167,7 +167,8 @@ export class WorkflowDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private adminService: AdminService,
     private activatedRoute: ActivatedRoute,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     const { adminToken } = JSON.parse(localStorage.getItem('user') ?? '{}');
@@ -253,6 +254,7 @@ export class WorkflowDetailComponent implements OnInit {
         next: (res) => {
           this.result = res;
           window.confirm(this.result.message);
+          this.router.navigate(['/det/pages/workflow']);
         },
         error: (error) => {
           console.log(error);
