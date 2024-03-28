@@ -199,7 +199,9 @@ export class OrderDetailComponent {
         .subscribe(
           (response: any) => {
             // Handle response if needed
-            console.log('Order started successfully', response);
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000)
             // After starting the order, switch to the history tab
             const historyTab = document.getElementById('history-tab');
             if (historyTab) {
